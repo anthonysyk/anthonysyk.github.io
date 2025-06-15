@@ -54,7 +54,7 @@ other = "Share on"
 other = "Contents"
 
 [publish]
-other = "published on"
+other = "Published on"
 
 [included]
 other = "included in"
