@@ -33,5 +33,5 @@ Mes objectifs dans les projets sont :
 
 #### Mes liens
 
-* Citations : https://versatile-flow.com/posts/quotes
-* Parrainage : https://versatile-flow.com/posts/referral
+* Citations : https://anthonysyk.github.io/posts/quotes
+* Parrainage : https://anthonysyk.github.io/posts/referral

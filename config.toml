@@ -86,13 +86,6 @@ tags = [
     title = ""
     weight = 1
   [[menu.main]]
-    identifier = "categories"
-    pre = ""
-    name = "Categories"
-    url = "/categories/"
-    title = ""
-    weight = 3
-  [[menu.main]]
     identifier = "portfolio"
     pre = ""
     name = "Portfolio"
@@ -133,13 +126,6 @@ tags = [
         url = "/portfolio/"
         title = ""
         weight = 2
-      [[languages.fr.menu.main]]
-        identifier = "categories"
-        pre = ""
-        name = "Catégories"
-        url = "/categories/"
-        title = ""
-        weight = 4
       [[languages.fr.menu.main]]
         identifier = "about"
         pre = ""
@@ -185,7 +171,7 @@ tags = [
         [languages.fr.params.social]
           GitHub = "anthonysyk"
           Linkedin = "anthony-ssi-yan-kai"
-          Email = "anthony@versatile-flow.com"
+          Email = "asyk.dev@gmail.com"
         # Social Share Links in post page
         [languages.fr.params.share]
           enable = true
