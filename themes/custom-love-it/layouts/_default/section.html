@@ -1,0 +1,47 @@
+{{- define "title" }}
+    {{- T .Section | default .Section | printf (T "allSome") }} | {{ .Site.Title -}}
+{{- end -}}
+
+{{- define "content" -}}
+    <div class="page archive">
+        {{- /* Title */ -}}
+        <h2 class="single-title animated pulse faster">
+            {{- T .Section | default .Section | humanize | printf (T "allSome") -}}
+        </h2>
+
+        {{- /* Paginate */ -}}
+        {{- range (.Paginate (.Pages.GroupByDate "2006")).PageGroups -}}
+            <h3>{{ .Key }}</h3>
+            {{- range .Pages -}}
+                <article class="archive-item">
+                    <a href="{{ .RelPermalink }}" class="archive-item-link">
+                        {{- /* Featured image */ -}}
+                        {{- with .Params.featuredImage -}}
+                        <div class="archive-featured-image">
+                            {{- $image := $.Params.featuredImagePreview | default . -}}
+                            {{- partial "plugin/image.html" (dict "src" $image "description" $.Description) -}}
+                        </div>
+                        {{- end -}}
+                        <div>
+                            <span class="archive-title">{{- .Title -}}</span>
+                        </div>
+                        {{- if .Params.featuredImage -}}
+                        {{- /* Summary content */ -}}
+                        <div class="archive-content">
+                            {{- with .Summary -}}
+                            {{- partial "single/content.html" . -}}
+                            {{- else -}}
+                            {{- .Description | safeHTML -}}
+                            {{- end -}}
+                        </div>
+                        {{- end -}}
+                    </a>
+                    {{- with .Params.featuredImage -}}
+                    <div class="archive-bottom-divider"></div>
+                    {{- end -}}
+                </article>
+            {{- end -}}
+        {{- end -}}
+        {{- partial "paginator.html" . -}}
+    </div>
+{{- end -}}

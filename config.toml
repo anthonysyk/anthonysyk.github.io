@@ -1,0 +1,214 @@
+baseURL = "https://versatile-flow.com/"
+defaultContentLanguage = "fr"
+languageCode = "fr"
+theme = "custom-love-it"
+pygmentscodefences = "true"
+enableRobotsTXT = true
+
+name = "Versatile Flow | Blog"
+description = "Découvrez les derniers articles de Anthony SSI YAN KAI."
+homepage = "https://versatile-flow.com"
+tags = [
+  "blog",
+  "clean",
+  "responsive",
+  "it",
+  "tech",
+  "software engineer",
+  "big data",
+  "architecture",
+  "code",
+  "développeur",
+  "freelance"
+]
+
+# Sitemap Info
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
+# Privacy Info (https://gohugo.io/about/hugo-and-gdpr/)
+[privacy]
+  [privacy.googleAnalytics]
+    anonymizeIP = true
+
+  [privacy.youtube]
+    privacyEnhanced = true
+
+[author]
+  name = "Anthony SSI YAN KAI"
+  homepage = "https://versatile-flow.com"
+
+[params]
+  # LoveIt theme version
+  version = "0.1.X"
+  # site description
+  description = "Versatile Flow Blog by Anthony SSI YAN KAI"
+  # site keywords
+  keywords = ["Blog", "Software Engineer", "Code", "Développement"]
+  # site default theme ("light", "dark", "auto")
+  defaultTheme = "auto"
+  # public git repo url only then enableGitInfo is true
+  gitRepo = ""
+  # LoveIt   v0.1.1
+  # which hash function used for SRI, when empty, no SRI is used ("sha256", "sha384", "sha512", "md5")
+  fingerprint = ""
+  [params.verification]
+    google = "fIxDMihkHG2qcL7M5lurDDAokHD5dj7tmFkjjCHLZxo"
+    # Publisher Info just for SEO
+  [params.publisher]
+    name = "Versatile Flow"
+  [params.publisher.logo]
+    url = "logo.png"
+    width = 192
+    height = 192
+  # Website Log Info just for SEO
+  [params.logo]
+    url = "logo.png"
+    width = 192
+    height = 192
+  # Website Image Info just for SEO
+  [params.image]
+    url = "cover.jpeg"
+    width = 800
+    height = 600
+
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    # you can add extra information before the name (HTML format is allowed), such as icons
+    pre = ""
+    name = "Posts"
+    url = "/posts/"
+    # title will be shown when you hover on this menu link
+    title = ""
+    weight = 1
+  [[menu.main]]
+    identifier = "categories"
+    pre = ""
+    name = "Categories"
+    url = "/categories/"
+    title = ""
+    weight = 3
+  [[menu.main]]
+    identifier = "portfolio"
+    pre = ""
+    name = "Portfolio"
+    url = "/portfolio/"
+    title = ""
+    weight = 4
+
+[languages]
+  [languages.fr]
+    weight = 1
+    # language code
+    languageCode = "fr"
+    # website title
+    title = "Versatile Flow | Blog"
+    # language name
+    languageName = "Français"
+    # whether to include Chinese/Japanese/Korean
+    hasCJKLanguage = false
+    # default amount of posts in each pages
+    paginate = 30
+    # copyright description used only for seo schema
+    copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License."
+    # date format
+    dateFormatToUse = "02/01/2006"
+    # Menu Info
+    [languages.fr.menu]
+      [[languages.fr.menu.main]]
+        identifier = "posts"
+        pre = ""
+        name = "Articles"
+        url = "/posts/"
+        title = ""
+        weight = 1
+      [[languages.fr.menu.main]]
+        identifier = "portfolio"
+        pre = ""
+        name = "Portfolio"
+        url = "/portfolio/"
+        title = ""
+        weight = 2
+      [[languages.fr.menu.main]]
+        identifier = "categories"
+        pre = ""
+        name = "Catégories"
+        url = "/categories/"
+        title = ""
+        weight = 4
+      [[languages.fr.menu.main]]
+        identifier = "about"
+        pre = ""
+        name = "À propos"
+        url = "/about/"
+        title = ""
+        weight = 5
+      [languages.fr.params]
+        # site description
+        description = "Découvrez les derniers articles de Anthony SSI YAN KAI."
+        # site keywords
+        keywords = ["Thème", "Hugo"]
+        # site default theme ("light", "dark", "auto")
+        defaultTheme = "auto"
+        # Home Page Info
+        [params.footer]
+        # Site creation time
+        since = 2019
+        # Home Page Info
+        [languages.fr.params.home]
+          # Home Page Profile
+          [languages.fr.params.home.profile]
+            enable = true
+            # Gravatar Email for preferred avatar in home page
+            gravatarEmail = ""
+            # URL of avatar shown in home page
+            avatarURL = "/general/avatar.png"
+            # subtitle shown in home page
+            subtitle = "Le jeune singe court vite, mais le vieux singe connaît la route."
+            subtitles = ["Duplication is far cheaper than the wrong abstraction."]
+            # whether to use typeit animation for subtitle
+            typeit = true
+            # whether to show social links
+            social = true
+          # Home Page Posts
+          [languages.fr.params.home.posts]
+            enable = true
+            # special amount of posts in each home posts page
+            paginate = 30
+            # default behavior when you don't set "hiddenFromHomePage" in front matter
+            defaultHiddenFromHomePage = false
+        # Social Info in home page
+        [languages.fr.params.social]
+          GitHub = "anthonysyk"
+          Linkedin = "anthony-ssi-yan-kai"
+          Email = "anthony@versatile-flow.com"
+        # Social Share Links in post page
+        [languages.fr.params.share]
+          enable = true
+          Twitter = true
+          Facebook = true
+          Linkedin = true
+          Whatsapp = true
+          Pinterest = true
+
+
+[markup]
+  # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
+  # 语法高亮设置 (https://gohugo.io/content-management/syntax-highlighting)
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNoStart = 1
+    lineNos = true
+    lineNumbersInTable = true
+    noClasses = false
+    style = "monokai"
+    tabWidth = 4
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'

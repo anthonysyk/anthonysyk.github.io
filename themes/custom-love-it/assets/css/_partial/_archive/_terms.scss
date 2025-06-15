@@ -1,0 +1,125 @@
+.archive-item {
+  margin-left: 1rem;
+  margin-right:1rem;
+}
+
+.archive-title {
+  margin: 0.8rem 0;
+  font-size: 1.4rem;
+  text-overflow: ellipsis;
+}
+
+.archive-content {
+    text-overflow: ellipsis;
+    white-space: pre-line;
+}
+
+.archive-featured-image {
+  width: 100%;
+  padding: 30% 0 0;
+  position: relative;
+  margin-bottom: 1rem;
+  transition: transform 0.4s ease;
+  &:hover {
+    transform: scale(1.01);
+  }
+  img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+  }
+}
+
+.archive-bottom-divider {
+  margin-bottom: 2rem;
+  border-bottom: 1px dashed $global-border-color;
+
+  .dark-theme & {
+    color: $global-font-color-dark;
+    border-bottom: 1px dashed $global-border-color-dark;
+  }
+}
+
+.categories-card {
+  margin: 0 auto;
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0 2.5rem;
+  line-height: 1.6rem;
+
+  .card-item {
+    font-size: .875rem;
+    text-align: left;
+    width: 45%;
+    display: flex;
+    align-items: flex-start;
+    margin-top: 2rem;
+    min-height: 10rem;
+    padding: 0 2%;
+    position: relative;
+
+    .card-item-wrapper {
+      width: 100%;
+      overflow: hidden;
+
+      .card-item-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        display: inline-block;
+      }
+
+      span {
+        float: right;
+        padding-right: 1rem;
+      }
+    }
+  }
+}
+
+.archive-item-link {
+  display: inline-block;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  padding-bottom:.5rem;
+
+  &:hover {
+    color: $global-link-hover-color;
+    background-color: transparent;
+  }
+
+  .dark-theme & {
+    color: $global-link-color-dark;
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+
+    &:hover {
+      color: $global-link-hover-color-dark;
+      text-decoration: none;
+      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+    }
+  }
+}
+
+.archive-item-date {
+  float: right;
+  text-align: right;
+  color: $global-font-secondary-color;
+
+  .dark-theme & {
+    color: $global-font-secondary-color-dark;
+  }
+}
+
+.more-post {
+  text-align: right;
+}
