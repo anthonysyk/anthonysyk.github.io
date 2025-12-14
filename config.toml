@@ -7,7 +7,7 @@ enableRobotsTXT = true
 
 name = "Versatile Flow | Blog"
 description = "Découvrez les derniers articles de Anthony SSI YAN KAI."
-homepage = "https://versatile-flow.com"
+homepage = "https://anthonysyk.github.io/"
 tags = [
   "blog",
   "clean",
@@ -38,7 +38,7 @@ tags = [
 
 [author]
   name = "Anthony SSI YAN KAI"
-  homepage = "https://versatile-flow.com"
+  homepage = "https://anthonysyk.github.io/"
 
 [params]
   # LoveIt theme version
@@ -48,7 +48,7 @@ tags = [
   # site keywords
   keywords = ["Blog", "Software Engineer", "Code", "Développement"]
   # site default theme ("light", "dark", "auto")
-  defaultTheme = "auto"
+  defaultTheme = "dark"
   # public git repo url only then enableGitInfo is true
   gitRepo = ""
   # LoveIt   v0.1.1
@@ -139,7 +139,7 @@ tags = [
         # site keywords
         keywords = ["Thème", "Hugo"]
         # site default theme ("light", "dark", "auto")
-        defaultTheme = "auto"
+        defaultTheme = "dark"
         # Home Page Info
         [params.footer]
         # Site creation time
