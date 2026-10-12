@@ -42,7 +42,7 @@ export async function getPosts({ includeHidden = false } = {}) {
 }
 
 export async function getProjects() {
-  const items = await getCollection('portfolio', (p) => !p.data.draft);
+  const items = await getCollection('portfolio', (p) => !p.data.draft && !p.data.hidden);
   return items.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 }
 

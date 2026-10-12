@@ -4,6 +4,7 @@ date: 2020-03-01
 summary: Cryptofisc est un outil simple permettant de calculer rapidement ses
   gains et ses pertes en crypto-actifs.
 image: /projects/cryptofisc/preview.webp
+hidden: true
 ---
 
 Cryptofisc est un outil simple permettant de calculer rapidement ses gains et ses pertes en crypto-actifs.

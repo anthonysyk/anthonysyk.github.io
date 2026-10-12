@@ -5,6 +5,7 @@ summary: Peastocks est une application conçue pour simplifier la gestion de
   votre budget personnel, vous aider à optimiser votre épargne et à identifier
   des stratégies pour atteindre vos objectifs financiers.
 image: /projects/peastocks/preview.png
+hidden: true
 ---
 
 Peastocks est une application conçue pour simplifier la gestion de votre budget personnel, vous aider à optimiser votre épargne et à identifier des stratégies pour atteindre vos objectifs financiers.

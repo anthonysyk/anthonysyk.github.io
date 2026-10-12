@@ -41,6 +41,8 @@ Admonitions : `<div class="admonition admonition-note"><p class="admonition-titl
 
 Projet mis en avant dans le hero de l'accueil : ajouter `featured: true` dans le front matter du projet (`src/content/portfolio/*.md`). Sans projet marqué, le plus récent est utilisé.
 
+Masquer un article ou un projet sans supprimer son contenu : `hidden: true` (`draft: true` pour un brouillon).
+
 ## Déploiement
 
 Push sur `main` → GitHub Actions (`.github/workflows/deploy.yml`) lint, build et publie `dist/` sur Pages.
