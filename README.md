@@ -16,7 +16,7 @@ npm run lint
 
 | Chemin | Rôle |
 | --- | --- |
-| `src/content/{posts,portfolio,cheatsheets,pages}` | Contenu Markdown (schémas validés dans `src/content.config.ts`) |
+| `src/content/{posts,portfolio,pages}` | Contenu Markdown (schémas validés dans `src/content.config.ts`) |
 | `src/pages` | Routes (accueil, articles, portfolio, tags, recherche, RSS, robots) |
 | `src/layouts`, `src/components` | Mise en page et composants |
 | `src/lib/site.ts` | Config du site, navigation, helpers |

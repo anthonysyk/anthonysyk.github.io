@@ -19,6 +19,5 @@ const make = <S extends z.ZodType>(dir: string, schema: S) =>
 export const collections = {
   posts: make('posts', entry),
   portfolio: make('portfolio', entry),
-  cheatsheets: make('cheatsheets', entry),
   pages: make('pages', z.object({ title: z.string() })),
 };
