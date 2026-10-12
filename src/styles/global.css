@@ -3,96 +3,93 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  --color-accent: #7c5cff;
-  --color-accent-2: #22d3ee;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-html {
-  scroll-behavior: smooth;
+:root {
+  --accent: #1d4ed8;
   color-scheme: light;
 }
-html.dark {
+.dark {
+  --accent: #8fb0f3;
   color-scheme: dark;
 }
+
 body {
-  @apply bg-slate-50 font-sans text-slate-800 antialiased;
+  @apply bg-white font-sans text-zinc-700 antialiased;
+  font-feature-settings: 'cv11', 'ss01';
 }
 .dark body {
-  @apply bg-[#0b0d14] text-slate-300;
+  @apply bg-zinc-950 text-zinc-400;
 }
 
-.bg-glow {
-  background:
-    radial-gradient(60rem 30rem at 15% -10%, color-mix(in oklab, var(--color-accent) 22%, transparent), transparent 70%),
-    radial-gradient(45rem 25rem at 90% 0%, color-mix(in oklab, var(--color-accent-2) 16%, transparent), transparent 70%);
+/* Composants */
+.page-title {
+  @apply text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl;
 }
-
-.gradient-text {
-  @apply bg-gradient-to-r from-[#7c5cff] to-[#22d3ee] bg-clip-text text-transparent;
+.dark .page-title {
+  @apply text-zinc-50;
 }
-
-.card {
-  @apply relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition duration-300;
+.section-head {
+  @apply flex items-baseline justify-between border-b border-zinc-200 pb-3;
 }
-.dark .card {
-  @apply border-white/10 bg-white/[0.03];
+.dark .section-head {
+  @apply border-zinc-800;
 }
-.card:hover {
-  @apply -translate-y-1 border-[color:var(--color-accent)]/50 shadow-xl shadow-[color:var(--color-accent)]/10;
+.section-title {
+  @apply text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500;
 }
-
-.chip {
-  @apply inline-flex items-center rounded-full border border-slate-200 px-2.5 py-0.5 text-xs text-slate-600 transition hover:border-[color:var(--color-accent)] hover:text-[color:var(--color-accent)];
+.link {
+  color: var(--accent);
+  @apply underline-offset-4 hover:underline;
 }
-.dark .chip {
-  @apply border-white/10 text-slate-400;
+.tag {
+  @apply inline-flex items-center rounded-md border border-zinc-200 px-2 py-0.5 text-xs text-zinc-600 transition-colors hover:border-zinc-400 hover:text-zinc-900;
 }
-
-.fade-up {
-  animation: fade-up 0.6s ease both;
+.dark .tag {
+  @apply border-zinc-800 text-zinc-400 hover:border-zinc-600 hover:text-zinc-100;
 }
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
+.btn {
+  @apply inline-flex items-center rounded-md px-4 py-2 text-sm font-medium transition;
 }
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  .fade-up {
-    animation: none;
-  }
-  .card:hover {
-    transform: none;
-  }
+.btn-primary {
+  @apply bg-zinc-900 text-white hover:bg-zinc-700;
+}
+.dark .btn-primary {
+  @apply bg-zinc-100 text-zinc-900 hover:bg-white;
+}
+.btn-secondary {
+  @apply border border-zinc-300 text-zinc-800 hover:bg-zinc-50;
+}
+.dark .btn-secondary {
+  @apply border-zinc-700 text-zinc-200 hover:bg-zinc-900;
 }
 
 /* Contenu markdown */
 .prose {
   @apply max-w-none;
 }
-.prose :where(a):not(.chip) {
-  color: var(--color-accent);
+.prose :where(a):not(.tag) {
+  color: var(--accent);
+  @apply font-normal underline-offset-4;
 }
 .prose :where(img) {
-  @apply mx-auto rounded-xl;
+  @apply mx-auto rounded-lg border border-zinc-200 dark:border-zinc-800;
 }
 .prose :where(h2, h3, h4) {
+  @apply font-semibold tracking-tight;
   scroll-margin-top: 5rem;
 }
 .prose :where(code):not(pre code) {
-  @apply rounded bg-slate-200/70 px-1.5 py-0.5 text-[0.85em] font-medium dark:bg-white/10;
+  @apply rounded bg-zinc-100 px-1.5 py-0.5 text-[0.85em] font-medium dark:bg-zinc-800/80;
 }
 .prose :where(code):not(pre code)::before,
 .prose :where(code):not(pre code)::after {
   content: none;
 }
 .prose pre {
-  @apply rounded-xl border border-slate-200 text-sm dark:border-white/10;
+  @apply rounded-lg border border-zinc-200 text-[0.85rem] leading-relaxed dark:border-zinc-800;
 }
 .prose pre.astro-code {
   background-color: var(--shiki-light-bg) !important;
@@ -106,41 +103,55 @@ body {
 .dark .astro-code span {
   color: var(--shiki-dark);
 }
+.prose blockquote p::before,
+.prose blockquote p::after {
+  content: none;
+}
 .prose table {
   @apply block overflow-x-auto;
 }
 
 .admonition {
-  @apply my-6 rounded-xl border-l-4 border-slate-400 bg-slate-100 px-5 py-1 dark:bg-white/5;
+  @apply my-6 rounded-md border border-l-4 border-zinc-200 border-l-zinc-400 bg-zinc-50 px-5 py-1 text-[0.95em];
+}
+.dark .admonition {
+  @apply border-zinc-800 border-l-zinc-600 bg-zinc-900/60;
 }
 .admonition-title {
-  @apply !mb-1 !mt-3 font-semibold;
+  @apply !mb-1 !mt-3 text-sm font-semibold text-zinc-900 dark:text-zinc-100;
 }
 .admonition-note {
-  @apply border-sky-500 bg-sky-50 dark:bg-sky-500/10;
+  @apply !border-l-sky-600;
 }
 .admonition-tip {
-  @apply border-emerald-500 bg-emerald-50 dark:bg-emerald-500/10;
+  @apply !border-l-emerald-600;
 }
 .admonition-warning {
-  @apply border-amber-500 bg-amber-50 dark:bg-amber-500/10;
+  @apply !border-l-amber-500;
 }
 .admonition-question {
-  @apply border-violet-500 bg-violet-50 dark:bg-violet-500/10;
+  @apply !border-l-indigo-500;
 }
 .admonition-quote {
-  @apply border-slate-500 italic;
+  @apply italic;
 }
 
 /* Pagefind */
 :root {
-  --pagefind-ui-primary: var(--color-accent);
-  --pagefind-ui-border-radius: 12px;
+  --pagefind-ui-primary: var(--accent);
+  --pagefind-ui-border-radius: 6px;
+  --pagefind-ui-border-width: 1px;
   --pagefind-ui-font: var(--font-sans);
 }
 .dark {
-  --pagefind-ui-text: #e2e8f0;
-  --pagefind-ui-background: #11131c;
-  --pagefind-ui-border: #2a2d3a;
-  --pagefind-ui-tag: #1c1f2b;
+  --pagefind-ui-text: #e4e4e7;
+  --pagefind-ui-background: #09090b;
+  --pagefind-ui-border: #27272a;
+  --pagefind-ui-tag: #18181b;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
 }

@@ -1,46 +1,70 @@
 ---
 import Base from '../layouts/Base.astro';
-import PostCard from '../components/PostCard.astro';
+import PostItem from '../components/PostItem.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { getPosts, getProjects, SITE } from '../lib/site';
 
-const posts = (await getPosts()).slice(0, 6);
-const projects = (await getProjects()).slice(0, 3);
-const stack = ['Scala', 'Go', 'Spark', 'Kafka', 'GCP', 'Kubernetes', 'Terraform'];
+const posts = (await getPosts()).slice(0, 5);
+const projects = (await getProjects()).slice(0, 4);
+const expertise = [
+  { title: 'Data engineering', items: 'Spark, Kafka, Airflow, datalakes, ETL batch et streaming' },
+  { title: 'Backend & API', items: 'Scala, Go, gRPC, GraphQL, architectures réactives' },
+  { title: 'Cloud & DevOps', items: 'Google Cloud, Kubernetes, Terraform, optimisation des coûts' },
+];
 ---
 
 <Base>
-  <section class="fade-up flex flex-col items-center gap-8 py-10 text-center sm:py-16">
-    <img src="/general/avatar.webp" alt="Anthony SSI YAN KAI" width="128" height="128" class="size-32 rounded-full border-2 border-[color:var(--color-accent)]/60 object-cover shadow-xl shadow-[color:var(--color-accent)]/20" />
-    <div>
-      <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-6xl dark:text-white">
-        Anthony <span class="gradient-text">SSI YAN KAI</span>
-      </h1>
-      <p class="mx-auto mt-5 max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-        Développeur freelance — API, traitement de données, big data &amp; cloud. Scala et Go depuis plus de 7 ans.
-      </p>
+  <section class="max-w-2xl">
+    <img
+      src="/general/avatar.webp"
+      alt="Anthony SSI YAN KAI"
+      width="64"
+      height="64"
+      class="size-16 rounded-full border border-zinc-200 object-cover dark:border-zinc-800"
+    />
+    <h1 class="page-title mt-8">Anthony SSI YAN KAI</h1>
+    <p class="mt-2 text-lg text-zinc-600 dark:text-zinc-300">Développeur freelance — Data, API &amp; Cloud</p>
+    <p class="mt-6 leading-relaxed">
+      Plus de 7 ans d'expérience en Scala et Go. J'accompagne les équipes sur la conception d'API, les pipelines de
+      données à grande échelle et l'infrastructure cloud, avec une priorité : du code lisible, testé et maintenable.
+    </p>
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <a href={SITE.social.Email} class="btn btn-primary">Me contacter</a>
+      <a href="/portfolio/" class="btn btn-secondary">Voir les projets</a>
+      <span class="flex gap-4 text-sm sm:ml-2">
+        <a href={SITE.social.GitHub} rel="me noopener" class="link">GitHub</a>
+        <a href={SITE.social.LinkedIn} rel="me noopener" class="link">LinkedIn</a>
+      </span>
     </div>
-    <ul class="flex flex-wrap justify-center gap-2">{stack.map((s) => <li class="chip">{s}</li>)}</ul>
-    <div class="flex flex-wrap justify-center gap-3">
-      <a href="/portfolio/" class="rounded-full bg-[color:var(--color-accent)] px-6 py-2.5 font-medium text-white shadow-lg shadow-[color:var(--color-accent)]/30 transition hover:brightness-110">Voir le portfolio</a>
-      <a href={SITE.social.Email} class="rounded-full border border-slate-300 px-6 py-2.5 font-medium transition hover:border-[color:var(--color-accent)] dark:border-white/15">Me contacter</a>
-    </div>
-    <p class="text-sm italic text-slate-500">« {SITE.tagline} »</p>
   </section>
 
-  <section class="mt-16" aria-labelledby="projects">
-    <div class="mb-6 flex items-end justify-between">
-      <h2 id="projects" class="text-2xl font-bold text-slate-900 dark:text-white">Projets récents</h2>
-      <a href="/portfolio/" class="text-sm text-[color:var(--color-accent)]">Tout voir →</a>
-    </div>
-    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{projects.map((p) => <ProjectCard project={p} />)}</div>
+  <section class="mt-24" aria-labelledby="expertise">
+    <div class="section-head"><h2 id="expertise" class="section-title">Expertise</h2></div>
+    <dl class="mt-8 grid gap-8 sm:grid-cols-3">
+      {
+        expertise.map((e) => (
+          <div>
+            <dt class="font-medium text-zinc-900 dark:text-zinc-100">{e.title}</dt>
+            <dd class="mt-1.5 text-sm leading-relaxed">{e.items}</dd>
+          </div>
+        ))
+      }
+    </dl>
   </section>
 
-  <section class="mt-16" aria-labelledby="posts">
-    <div class="mb-6 flex items-end justify-between">
-      <h2 id="posts" class="text-2xl font-bold text-slate-900 dark:text-white">Derniers articles</h2>
-      <a href="/posts/" class="text-sm text-[color:var(--color-accent)]">Tous les articles →</a>
+  <section class="mt-24" aria-labelledby="projects">
+    <div class="section-head">
+      <h2 id="projects" class="section-title">Projets sélectionnés</h2>
+      <a href="/portfolio/" class="link text-sm">Tous les projets →</a>
     </div>
-    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{posts.map((p) => <PostCard post={p} />)}</div>
+    <div class="mt-8 grid gap-x-8 gap-y-12 sm:grid-cols-2">{projects.map((p) => <ProjectCard project={p} />)}</div>
+  </section>
+
+  <section class="mt-24" aria-labelledby="posts">
+    <div class="section-head">
+      <h2 id="posts" class="section-title">Articles récents</h2>
+      <a href="/posts/" class="link text-sm">Tous les articles →</a>
+    </div>
+    <ul class="divide-y divide-zinc-200 dark:divide-zinc-800">{posts.map((p) => <PostItem post={p} />)}</ul>
   </section>
 </Base>

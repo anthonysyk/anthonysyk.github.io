@@ -1,9 +1,7 @@
 ---
 title: Essential Go Guidelines (Rules of Thumb)
 date: 2023-08-11
-summary: Getters and Setters Only use them when they are truly necessary (mutex,
-  internal complexity, etc.). Otherwise, prefer simplicity. Big interfaces =
-  Weak abstraction The more methods
+summary: "Règles pratiques pour écrire du Go idiomatique : getters/setters, taille des interfaces, composition et simplicité."
 ---
 
 ## Getters and Setters

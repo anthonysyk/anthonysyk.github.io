@@ -5,7 +5,6 @@ export const SITE = {
   author: 'Anthony SSI YAN KAI',
   title: 'Versatile Flow | Anthony SSI YAN KAI',
   description: 'Blog et portfolio de Anthony SSI YAN KAI — développeur Scala & Go, data, cloud et DevOps.',
-  tagline: 'Le jeune singe court vite, mais le vieux singe connaît la route.',
   social: {
     GitHub: 'https://github.com/anthonysyk',
     LinkedIn: 'https://www.linkedin.com/in/anthony-ssi-yan-kai',
@@ -25,6 +24,9 @@ export const slugify = (s: string) =>
 
 export const formatDate = (d: Date) =>
   d.toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+
+export const formatMonth = (d: Date) =>
+  d.toLocaleDateString('fr-FR', { year: 'numeric', month: 'short', timeZone: 'UTC' });
 
 export const readingTime = (body = '') => Math.max(1, Math.round(body.split(/\s+/).length / 220));
 

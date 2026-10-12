@@ -1,4 +1,5 @@
 ---
+import '@fontsource-variable/inter';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -31,7 +32,7 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang="fr" class="dark">
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -53,14 +54,19 @@ const jsonLd = {
     <meta name="twitter:card" content="summary_large_image" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script is:inline>
-      document.documentElement.classList.toggle('dark', (localStorage.getItem('theme') ?? 'dark') === 'dark');
+      const stored = localStorage.getItem('theme');
+      const dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.classList.toggle('dark', dark);
     </script>
   </head>
-  <body class="min-h-screen">
-    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded focus:bg-white focus:p-2 focus:text-black">Aller au contenu</a>
-    <div class="bg-glow pointer-events-none absolute inset-x-0 top-0 -z-10 h-[40rem]" aria-hidden="true"></div>
+  <body class="flex min-h-screen flex-col">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded focus:bg-white focus:p-2 focus:text-black"
+      >Aller au contenu</a
+    >
     <Header />
-    <main id="main" class="mx-auto max-w-5xl px-5 pt-12">
+    <main id="main" class="mx-auto w-full max-w-5xl flex-1 px-6 pt-16">
       <slot />
     </main>
     <Footer />

@@ -1,15 +1,29 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-interface Props { project: CollectionEntry<'portfolio'> }
+interface Props {
+  project: CollectionEntry<'portfolio'>;
+}
 const { project } = Astro.props;
 ---
 
-<a href={`/portfolio/${project.id}/`} class="card group">
-  <div class="aspect-[16/9] overflow-hidden bg-gradient-to-br from-[#7c5cff]/30 to-[#22d3ee]/20">
-    {project.data.image && <img src={project.data.image} alt="" loading="lazy" class="size-full object-cover object-top transition duration-500 group-hover:scale-105" />}
+<a href={`/portfolio/${project.id}/`} class="group block">
+  <div class="aspect-[16/10] overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900">
+    {
+      project.data.image && (
+        <img
+          src={project.data.image}
+          alt=""
+          loading="lazy"
+          class="size-full object-cover object-top transition-opacity duration-300 group-hover:opacity-85"
+        />
+      )
+    }
   </div>
-  <div class="p-5">
-    <h3 class="font-semibold text-slate-900 transition group-hover:text-[color:var(--color-accent)] dark:text-white">{project.data.title}</h3>
-    <p class="mt-2 line-clamp-3 text-sm text-slate-600 dark:text-slate-400">{project.data.summary}</p>
+  <div class="mt-4 flex items-baseline justify-between gap-4">
+    <h3 class="font-medium text-zinc-900 transition-colors group-hover:text-[var(--accent)] dark:text-zinc-100">
+      {project.data.title}
+    </h3>
+    <span class="shrink-0 text-sm tabular-nums text-zinc-500">{project.data.date.getUTCFullYear()}</span>
   </div>
+  <p class="mt-1.5 line-clamp-2 text-sm leading-relaxed">{project.data.summary}</p>
 </a>
