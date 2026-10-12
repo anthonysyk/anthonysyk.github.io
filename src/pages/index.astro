@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import PostCard from '../components/PostCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getPosts, getProjects, SITE } from '../lib/site';
+
+const posts = (await getPosts()).slice(0, 6);
+const projects = (await getProjects()).slice(0, 3);
+const stack = ['Scala', 'Go', 'Spark', 'Kafka', 'GCP', 'Kubernetes', 'Terraform'];
+---
+
+<Base>
+  <section class="fade-up flex flex-col items-center gap-8 py-10 text-center sm:py-16">
+    <img src="/general/avatar.webp" alt="Anthony SSI YAN KAI" width="128" height="128" class="size-32 rounded-full border-2 border-[color:var(--color-accent)]/60 object-cover shadow-xl shadow-[color:var(--color-accent)]/20" />
+    <div>
+      <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-6xl dark:text-white">
+        Anthony <span class="gradient-text">SSI YAN KAI</span>
+      </h1>
+      <p class="mx-auto mt-5 max-w-2xl text-lg text-slate-600 dark:text-slate-400">
+        Développeur freelance — API, traitement de données, big data &amp; cloud. Scala et Go depuis plus de 7 ans.
+      </p>
+    </div>
+    <ul class="flex flex-wrap justify-center gap-2">{stack.map((s) => <li class="chip">{s}</li>)}</ul>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="/portfolio/" class="rounded-full bg-[color:var(--color-accent)] px-6 py-2.5 font-medium text-white shadow-lg shadow-[color:var(--color-accent)]/30 transition hover:brightness-110">Voir le portfolio</a>
+      <a href={SITE.social.Email} class="rounded-full border border-slate-300 px-6 py-2.5 font-medium transition hover:border-[color:var(--color-accent)] dark:border-white/15">Me contacter</a>
+    </div>
+    <p class="text-sm italic text-slate-500">« {SITE.tagline} »</p>
+  </section>
+
+  <section class="mt-16" aria-labelledby="projects">
+    <div class="mb-6 flex items-end justify-between">
+      <h2 id="projects" class="text-2xl font-bold text-slate-900 dark:text-white">Projets récents</h2>
+      <a href="/portfolio/" class="text-sm text-[color:var(--color-accent)]">Tout voir →</a>
+    </div>
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{projects.map((p) => <ProjectCard project={p} />)}</div>
+  </section>
+
+  <section class="mt-16" aria-labelledby="posts">
+    <div class="mb-6 flex items-end justify-between">
+      <h2 id="posts" class="text-2xl font-bold text-slate-900 dark:text-white">Derniers articles</h2>
+      <a href="/posts/" class="text-sm text-[color:var(--color-accent)]">Tous les articles →</a>
+    </div>
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{posts.map((p) => <PostCard post={p} />)}</div>
+  </section>
+</Base>

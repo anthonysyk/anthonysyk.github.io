@@ -1,3 +1,0 @@
-{{- $content := .Inner | .Page.RenderString -}}
-{{- $tag := .Get 1 | default "div" -}}
-{{- printf `<%s style="%s">%s</%s>` $tag ($.Get 0) $content $tag | safeHTML -}}

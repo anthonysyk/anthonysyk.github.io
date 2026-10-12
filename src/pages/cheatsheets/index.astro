@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+const items = await getCollection('cheatsheets');
+---
+
+<Base title="Cheatsheets" description="Aide-mémoire Go et GitHub.">
+  <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Cheatsheets</h1>
+  <div class="mt-10 grid gap-5 sm:grid-cols-2">
+    {items.map((c) => (
+      <a href={`/cheatsheets/${c.id}/`} class="card p-6">
+        <h2 class="text-xl font-semibold text-slate-900 dark:text-white">{c.data.title}</h2>
+        {c.data.summary && <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">{c.data.summary}</p>}
+      </a>
+    ))}
+  </div>
+</Base>

@@ -1,5 +1,5 @@
 .idea
-public
-.hugo_build.lock
-.firebase
-resources
+dist
+.astro
+node_modules
+.DS_Store

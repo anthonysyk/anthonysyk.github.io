@@ -1,0 +1,68 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../lib/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  date?: Date;
+  noindex?: boolean;
+}
+const { title, description = SITE.description, image = '/cover.jpeg', type = 'website', date, noindex } = Astro.props;
+const fullTitle = title ? `${title} | ${SITE.name}` : SITE.title;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': type === 'article' ? 'BlogPosting' : 'WebSite',
+  headline: title ?? SITE.name,
+  name: SITE.name,
+  description,
+  url: canonical,
+  image: ogImage,
+  inLanguage: 'fr',
+  author: { '@type': 'Person', name: SITE.author, url: 'https://versatile-flow.com/about/' },
+  ...(date ? { datePublished: date.toISOString() } : {}),
+};
+---
+
+<!doctype html>
+<html lang="fr" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
+    <meta name="google-site-verification" content="fIxDMihkHG2qcL7M5lurDDAokHD5dj7tmFkjjCHLZxo" />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline>
+      document.documentElement.classList.toggle('dark', (localStorage.getItem('theme') ?? 'dark') === 'dark');
+    </script>
+  </head>
+  <body class="min-h-screen">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded focus:bg-white focus:p-2 focus:text-black">Aller au contenu</a>
+    <div class="bg-glow pointer-events-none absolute inset-x-0 top-0 -z-10 h-[40rem]" aria-hidden="true"></div>
+    <Header />
+    <main id="main" class="mx-auto max-w-5xl px-5 pt-12">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

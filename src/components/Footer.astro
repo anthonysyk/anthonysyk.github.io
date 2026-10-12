@@ -1,0 +1,13 @@
+---
+import { SITE } from '../lib/site';
+---
+
+<footer class="mt-24 border-t border-slate-200 py-10 text-sm text-slate-500 dark:border-white/10">
+  <div class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-5 sm:flex-row">
+    <p>© 2019–{new Date().getFullYear()} {SITE.author}</p>
+    <ul class="flex gap-5">
+      {Object.entries(SITE.social).map(([k, v]) => <li><a href={v} rel="me noopener" class="hover:text-[color:var(--color-accent)]">{k}</a></li>)}
+      <li><a href="/rss.xml" class="hover:text-[color:var(--color-accent)]">RSS</a></li>
+    </ul>
+  </div>
+</footer>

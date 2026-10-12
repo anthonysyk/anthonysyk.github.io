@@ -1,0 +1,146 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-accent: #7c5cff;
+  --color-accent-2: #22d3ee;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+body {
+  @apply bg-slate-50 font-sans text-slate-800 antialiased;
+}
+.dark body {
+  @apply bg-[#0b0d14] text-slate-300;
+}
+
+.bg-glow {
+  background:
+    radial-gradient(60rem 30rem at 15% -10%, color-mix(in oklab, var(--color-accent) 22%, transparent), transparent 70%),
+    radial-gradient(45rem 25rem at 90% 0%, color-mix(in oklab, var(--color-accent-2) 16%, transparent), transparent 70%);
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-[#7c5cff] to-[#22d3ee] bg-clip-text text-transparent;
+}
+
+.card {
+  @apply relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition duration-300;
+}
+.dark .card {
+  @apply border-white/10 bg-white/[0.03];
+}
+.card:hover {
+  @apply -translate-y-1 border-[color:var(--color-accent)]/50 shadow-xl shadow-[color:var(--color-accent)]/10;
+}
+
+.chip {
+  @apply inline-flex items-center rounded-full border border-slate-200 px-2.5 py-0.5 text-xs text-slate-600 transition hover:border-[color:var(--color-accent)] hover:text-[color:var(--color-accent)];
+}
+.dark .chip {
+  @apply border-white/10 text-slate-400;
+}
+
+.fade-up {
+  animation: fade-up 0.6s ease both;
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .fade-up {
+    animation: none;
+  }
+  .card:hover {
+    transform: none;
+  }
+}
+
+/* Contenu markdown */
+.prose {
+  @apply max-w-none;
+}
+.prose :where(a):not(.chip) {
+  color: var(--color-accent);
+}
+.prose :where(img) {
+  @apply mx-auto rounded-xl;
+}
+.prose :where(h2, h3, h4) {
+  scroll-margin-top: 5rem;
+}
+.prose :where(code):not(pre code) {
+  @apply rounded bg-slate-200/70 px-1.5 py-0.5 text-[0.85em] font-medium dark:bg-white/10;
+}
+.prose :where(code):not(pre code)::before,
+.prose :where(code):not(pre code)::after {
+  content: none;
+}
+.prose pre {
+  @apply rounded-xl border border-slate-200 text-sm dark:border-white/10;
+}
+.prose pre.astro-code {
+  background-color: var(--shiki-light-bg) !important;
+}
+.dark .prose pre.astro-code {
+  background-color: var(--shiki-dark-bg) !important;
+}
+.astro-code span {
+  color: var(--shiki-light);
+}
+.dark .astro-code span {
+  color: var(--shiki-dark);
+}
+.prose table {
+  @apply block overflow-x-auto;
+}
+
+.admonition {
+  @apply my-6 rounded-xl border-l-4 border-slate-400 bg-slate-100 px-5 py-1 dark:bg-white/5;
+}
+.admonition-title {
+  @apply !mb-1 !mt-3 font-semibold;
+}
+.admonition-note {
+  @apply border-sky-500 bg-sky-50 dark:bg-sky-500/10;
+}
+.admonition-tip {
+  @apply border-emerald-500 bg-emerald-50 dark:bg-emerald-500/10;
+}
+.admonition-warning {
+  @apply border-amber-500 bg-amber-50 dark:bg-amber-500/10;
+}
+.admonition-question {
+  @apply border-violet-500 bg-violet-50 dark:bg-violet-500/10;
+}
+.admonition-quote {
+  @apply border-slate-500 italic;
+}
+
+/* Pagefind */
+:root {
+  --pagefind-ui-primary: var(--color-accent);
+  --pagefind-ui-border-radius: 12px;
+  --pagefind-ui-font: var(--font-sans);
+}
+.dark {
+  --pagefind-ui-text: #e2e8f0;
+  --pagefind-ui-background: #11131c;
+  --pagefind-ui-border: #2a2d3a;
+  --pagefind-ui-tag: #1c1f2b;
+}

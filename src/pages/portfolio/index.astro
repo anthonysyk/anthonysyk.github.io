@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getProjects } from '../../lib/site';
+const projects = await getProjects();
+---
+
+<Base title="Portfolio" description="Missions et projets : data engineering, architecture cloud, API et produits.">
+  <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Portfolio</h1>
+  <p class="mt-2 text-slate-600 dark:text-slate-400">Missions et projets sélectionnés.</p>
+  <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{projects.map((p) => <ProjectCard project={p} />)}</div>
+</Base>

@@ -1,0 +1,4 @@
+import type { APIContext } from 'astro';
+
+export const GET = ({ site }: APIContext) =>
+  new Response(`User-agent: *\nAllow: /\n\nSitemap: ${new URL('sitemap-index.xml', site)}\n`);

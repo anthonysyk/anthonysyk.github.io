@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Recherche" description="Rechercher dans les articles et projets." noindex>
+  <h1 class="mb-6 text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Recherche</h1>
+  <div id="search"></div>
+  <p id="search-dev" class="hidden text-sm text-slate-500">La recherche est disponible après <code>npm run build</code> puis <code>npm run preview</code>.</p>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+  <script is:inline>
+    const s = document.createElement('script');
+    s.src = '/pagefind/pagefind-ui.js';
+    s.onload = () => new PagefindUI({ element: '#search', showSubResults: true });
+    s.onerror = () => document.getElementById('search-dev').classList.remove('hidden');
+    document.head.appendChild(s);
+  </script>
+</Base>
