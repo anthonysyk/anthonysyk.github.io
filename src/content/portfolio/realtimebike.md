@@ -1,5 +1,6 @@
 ---
 title: RealTime Bike
+hidden: true
 date: 2018-10-01
 summary: Application permettant aux utilisateurs de consulter en temps réel la
   disponibilité des stations de vélos en France, afin de trouver facilement des

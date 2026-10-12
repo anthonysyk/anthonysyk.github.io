@@ -1,5 +1,6 @@
 ---
 title: Pop The Corn
+hidden: true
 date: 2016-11-22
 summary: Site de recommandation de films basé sur les préférences utilisateur,
   utilisant des algorithmes de traitement du langage naturel (NLP).
