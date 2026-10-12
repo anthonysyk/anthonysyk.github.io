@@ -5,9 +5,9 @@ export const SITE = {
   author: 'Anthony SSI YAN KAI',
   title: 'Versatile Flow | Anthony SSI YAN KAI',
   description: 'Blog et portfolio de Anthony SSI YAN KAI — développeur Scala & Go, data, cloud et DevOps.',
-  role: 'Développeur freelance · Scala & Go',
+  role: 'Développeur · Scala & Go',
   /** Affiche le badge « Disponible » sur l'accueil */
-  available: true,
+  available: false,
   /** Année de début de carrière, pour le calcul des années d'expérience */
   since: 2016,
   social: {

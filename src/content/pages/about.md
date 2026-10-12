@@ -4,7 +4,7 @@ title: "À propos"
 
 #### Anthony SSI YAN KAI
 
-Développeur dans le langage **Scala** depuis 2016, puis le langage **Golang** depuis 2018, j'ai **plus de 7 ans d'expérience** dans le développement d'**API**, **traitement des données**, **ETL**, en streaming/réactif et **big data**.
+Développeur dans le langage **Scala** depuis 2016, puis le langage **Golang** depuis 2018, j'ai **plus de 10 ans d'expérience** dans le développement d'**API**, **traitement des données**, **ETL**, en streaming/réactif et **big data**.
 
 Je me suis spécialisé depuis 2017 dans le traitement et la collecte de données sur des **systèmes distribués** ainsi que dans la création et l’enrichissement de **datalake** (Spark, Kafka).
 

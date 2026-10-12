@@ -5,6 +5,6 @@ const page = (await getEntry('pages', 'about'))!;
 const { Content } = await render(page);
 ---
 
-<Article title={page.data.title} description="À propos de Anthony SSI YAN KAI, développeur freelance Scala, Go, data et cloud." article={false}>
+<Article title={page.data.title} description="À propos de Anthony SSI YAN KAI, développeur Scala, Go, data et cloud." article={false}>
   <Content />
 </Article>

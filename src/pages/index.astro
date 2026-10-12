@@ -12,7 +12,7 @@ const latest = allPosts[0];
 
 const stats = [
   { value: `${new Date().getFullYear() - SITE.since}+ ans`, label: "d'expérience" },
-  { value: allProjects.length, label: 'missions & projets' },
+  { value: allProjects.length, label: 'projets' },
   { value: allPosts.length, label: 'articles publiés' },
 ];
 
@@ -65,7 +65,7 @@ const expertise = [
           Salut, moi c'est <span class="grad">Anthony.</span>
         </h1>
         <p class="mt-8 max-w-xl text-lg leading-relaxed sm:text-xl">
-          Développeur freelance <span class="text-fg">Scala &amp; Go</span> depuis {SITE.since}. J'aide les équipes à
+          Développeur <span class="text-fg">Scala &amp; Go</span> depuis {SITE.since}. J'aide les équipes à
           construire des plateformes data, des API et une infra cloud qui tiennent dans la durée.
         </p>
         <div class="mt-10 flex flex-wrap gap-3">
@@ -177,9 +177,9 @@ const expertise = [
       class="mx-auto size-20 rounded-full border border-white/10 object-cover"
       loading="lazy"
     />
-    <h2 class="display mt-8 text-4xl sm:text-6xl">Travaillons <span class="grad">ensemble.</span></h2>
+    <h2 class="display mt-8 text-4xl sm:text-6xl">Restons en <span class="grad">contact.</span></h2>
     <p class="mx-auto mt-5 max-w-md text-lg">
-      Un pipeline data, une API à construire ou une infra à faire évoluer ? Écris-moi, je réponds rapidement.
+      Une question sur un article, un retour d'expérience à partager ou juste envie d'échanger ? Écris-moi.
     </p>
     <div class="mt-10 flex flex-wrap justify-center gap-3">
       <a href={SITE.social.Email} class="btn btn-lg btn-primary">Écrire un message</a>
