@@ -9,7 +9,7 @@ const projects = await getProjects();
   <p class="eyebrow">Portfolio</p>
   <h1 class="page-title mt-3">Missions &amp; <span class="grad">projets</span></h1>
   <p class="mt-5 max-w-2xl text-lg leading-relaxed">
-    Une sélection de missions et de produits : data engineering, architecture cloud, API.
+    Les missions et projets sur lesquels j'ai travaillé, en data engineering, architecture cloud et API.
   </p>
   <div class="mt-14 grid gap-5 sm:grid-cols-2">{projects.map((p) => <ProjectCard project={p} />)}</div>
 </Base>
