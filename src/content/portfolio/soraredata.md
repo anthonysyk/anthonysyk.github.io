@@ -7,6 +7,7 @@ summary: Fondée en 2020, SorareData est la plateforme incontournable pour les
   SorareData aide les joueurs de play-to-earn à accéder aux outils et données
   nécessaires pour améliorer leur expérience de jeu.
 image: /projects/soraredata/preview.webp
+featured: true
 ---
 
 Fondée en 2020, SorareData est la plateforme incontournable pour les joueurs de Sorare. Elle offre des statistiques, des données de marché, des outils d'aide à la décision pour enrichir l'expérience des managers. SorareData aide les joueurs de play-to-earn à accéder aux outils et données nécessaires pour améliorer leur expérience de jeu.

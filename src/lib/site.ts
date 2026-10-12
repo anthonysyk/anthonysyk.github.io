@@ -46,6 +46,12 @@ export async function getProjects() {
   return items.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 }
 
+/** Projet du hero : celui marqué `featured: true`, sinon le plus récent */
+export async function getFeaturedProject() {
+  const projects = await getProjects();
+  return projects.find((p) => p.data.featured) ?? projects[0];
+}
+
 export function groupBy(posts: CollectionEntry<'posts'>[], key: 'tags' | 'categories') {
   const map = new Map<string, { label: string; posts: CollectionEntry<'posts'>[] }>();
   for (const p of posts)

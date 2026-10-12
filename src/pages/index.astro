@@ -3,10 +3,11 @@ import Base from '../layouts/Base.astro';
 import PostList from '../components/PostList.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import ExpertiseIcon from '../components/ExpertiseIcon.astro';
-import { formatMonth, getPosts, getProjects, SITE } from '../lib/site';
+import { formatMonth, getFeaturedProject, getPosts, getProjects, SITE } from '../lib/site';
 
 const allPosts = await getPosts();
 const allProjects = await getProjects();
+const featured = await getFeaturedProject();
 const latest = allPosts[0];
 
 const stats = [
@@ -47,7 +48,7 @@ const expertise = [
     <div class="glow -top-40 right-[-5%] -z-10 h-[32rem] w-[42rem] bg-lavender/20" aria-hidden="true"></div>
     <div class="glow top-60 -left-40 -z-10 h-80 w-[30rem] bg-accent/10" aria-hidden="true"></div>
 
-    <div class="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)] items-center gap-16 lg:grid-cols-[1.15fr_1fr]">
+    <div class="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)] items-center gap-16 lg:grid-cols-[1fr_1.1fr]">
       <div>
         {
           SITE.available && (
@@ -83,23 +84,36 @@ const expertise = [
         </dl>
       </div>
 
-      <div class="relative mx-auto w-full max-w-md lg:mr-0">
-        <div class="glow inset-6 -z-10 bg-lavender/40" aria-hidden="true"></div>
+      <div class="relative pb-16 sm:pb-20 lg:pl-6">
+        <div class="glow inset-10 -z-10 bg-lavender/35" aria-hidden="true"></div>
+        <a
+          href={`/portfolio/${featured.id}/`}
+          class="group block overflow-hidden rounded-[28px] border border-white/10 bg-surface p-2 shadow-[0_40px_120px_-30px_rgba(142,155,245,0.45)] transition hover:-translate-y-1"
+        >
+          <span class="flex items-center justify-between gap-4 px-3 py-2.5 text-xs">
+            <span><span class="eyebrow mr-2 text-[10px]">À la une</span><span class="text-fg">{featured.data.title}</span></span>
+            <span class="text-muted">{featured.data.date.getUTCFullYear()}</span>
+          </span>
+          {
+            featured.data.image && (
+              <img
+                src={featured.data.image}
+                alt={`Aperçu du projet ${featured.data.title}`}
+                class="aspect-[16/10] w-full rounded-[20px] object-cover object-top"
+              />
+            )
+          }
+        </a>
         <img
           src="/general/avatar.webp"
           alt={`Portrait de ${SITE.author}`}
           width="815"
           height="815"
-          class="aspect-square w-full rounded-[36px] border border-white/10 object-cover shadow-[0_40px_120px_-30px_rgba(142,155,245,0.5)]"
+          class="absolute bottom-0 -left-2 aspect-square w-32 rounded-[26px] border-4 border-bg object-cover shadow-2xl sm:w-44 lg:-left-6"
         />
-        <p
-          class="panel absolute top-6 -right-3 hidden items-center gap-2 px-4 py-2.5 text-sm text-fg backdrop-blur sm:flex"
-        >
-          <span class="grad font-medium">Scala</span> · <span class="grad font-medium">Go</span> · Data
-        </p>
         <a
           href={`/posts/${latest.id}/`}
-          class="panel absolute -bottom-8 -left-6 hidden w-64 p-4 backdrop-blur transition hover:-translate-y-0.5 sm:block"
+          class="panel absolute right-4 bottom-2 hidden w-60 p-4 backdrop-blur transition hover:-translate-y-0.5 sm:block"
         >
           <span class="eyebrow text-[10px]">Dernier article</span>
           <span class="mt-1.5 block text-sm leading-snug text-fg">{latest.data.title}</span>
@@ -143,7 +157,7 @@ const expertise = [
           </div>
           <a href="/portfolio/" class="btn btn-secondary">Tout voir →</a>
         </div>
-        <div class="grid gap-6 sm:grid-cols-2">{allProjects.slice(0, 4).map((p) => <ProjectCard project={p} />)}</div>
+        <div class="grid gap-6 sm:grid-cols-2">{allProjects.filter((p) => p.id !== featured.id).slice(0, 4).map((p) => <ProjectCard project={p} />)}</div>
       </section>
 
       <section class="mt-28 sm:mt-36" aria-labelledby="posts">

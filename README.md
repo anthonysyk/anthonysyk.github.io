@@ -39,6 +39,8 @@ categories: ["code"]
 
 Admonitions : `<div class="admonition admonition-note"><p class="admonition-title">Note</p>` … `</div>` (types : note, tip, warning, question, quote).
 
+Projet mis en avant dans le hero de l'accueil : ajouter `featured: true` dans le front matter du projet (`src/content/portfolio/*.md`). Sans projet marqué, le plus récent est utilisé.
+
 ## Déploiement
 
 Push sur `main` → GitHub Actions (`.github/workflows/deploy.yml`) lint, build et publie `dist/` sur Pages.

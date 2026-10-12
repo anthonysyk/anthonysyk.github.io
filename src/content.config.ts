@@ -11,6 +11,8 @@ const entry = z.object({
   image: z.string().optional(),
   hidden: z.boolean().default(false),
   draft: z.boolean().default(false),
+  /** Portfolio : projet mis en avant dans le hero de l'accueil */
+  featured: z.boolean().default(false),
 });
 
 const make = <S extends z.ZodType>(dir: string, schema: S) =>
