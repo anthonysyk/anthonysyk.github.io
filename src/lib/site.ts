@@ -18,8 +18,8 @@ export const SITE = {
 };
 
 export const nav = [
-  { href: '/posts/', label: 'Articles' },
   { href: '/portfolio/', label: 'Portfolio' },
+  { href: '/posts/', label: 'Articles' },
   { href: '/about/', label: 'À propos' },
 ];
 

@@ -4,24 +4,12 @@
 
 /*
  * Design tokens : toutes les couleurs passent par ces variables.
- * La classe `.dark` peut aussi être posée sur une section pour la forcer en sombre.
+ * Thème sombre uniquement (la classe `.dark` est posée sur <html>).
  */
-:root {
-  --bg: #f4f5f9;
-  --surface: #ffffff;
-  --surface-2: #eef0f5;
-  --line: #e3e5ec;
-  --line-strong: #cdd1dc;
-  --fg: #141415;
-  --text: #4b4c57;
-  --muted: #8a8c99;
-  --accent: #f1c086;
-  --accent-ink: #b07a3f;
-  --lavender: #8e9bf5;
-  --shadow: 0 1px 2px rgb(20 20 40 / 0.04), 0 12px 32px -16px rgb(20 20 40 / 0.14);
-  color-scheme: light;
-}
+:root,
 .dark {
+  --accent: #f1c086;
+  --lavender: #8e9bf5;
   --bg: #141415;
   --surface: #1c1c1e;
   --surface-2: #242427;
@@ -35,9 +23,27 @@
   color-scheme: dark;
 }
 
+/* Polices de secours aux métriques ajustées : limitent le décalage au swap. */
+@font-face {
+  font-family: 'Manrope Fallback';
+  src: local('Arial'), local('Helvetica');
+  size-adjust: 102.02%;
+  ascent-override: 104.49%;
+  descent-override: 29.41%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Geist Mono Fallback';
+  src: local('Courier New'), local('Courier');
+  size-adjust: 99.98%;
+  ascent-override: 100.52%;
+  descent-override: 29.5%;
+  line-gap-override: 0%;
+}
+
 @theme inline {
-  --font-sans: 'Manrope Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-mono: 'Geist Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: 'Manrope Variable', 'Manrope Fallback', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono Variable', 'Geist Mono Fallback', ui-monospace, SFMono-Regular, Menlo, monospace;
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
@@ -189,18 +195,6 @@ body {
 }
 .admonition-quote {
   @apply italic;
-}
-
-/* Pagefind */
-#search {
-  --pagefind-ui-primary: var(--fg);
-  --pagefind-ui-text: var(--fg);
-  --pagefind-ui-background: var(--surface);
-  --pagefind-ui-border: var(--line);
-  --pagefind-ui-tag: var(--surface-2);
-  --pagefind-ui-border-radius: 16px;
-  --pagefind-ui-border-width: 1px;
-  --pagefind-ui-font: var(--font-sans);
 }
 
 @media (prefers-reduced-motion: reduce) {

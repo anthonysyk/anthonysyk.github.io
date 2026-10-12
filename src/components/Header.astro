@@ -1,7 +1,6 @@
 ---
 import { nav } from '../lib/site';
 import Logo from './Logo.astro';
-import ThemeToggle from './ThemeToggle.astro';
 const path = Astro.url.pathname;
 ---
 
@@ -23,17 +22,5 @@ const path = Astro.url.pathname;
         ))
       }
     </nav>
-    <div class="flex items-center">
-      <a
-        href="/search/"
-        aria-label="Rechercher"
-        class="grid size-9 place-items-center rounded-full text-white/60 transition-colors hover:bg-white/8 hover:text-white"
-      >
-        <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"
-          ><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg
-        >
-      </a>
-      <ThemeToggle />
-    </div>
   </div>
 </header>

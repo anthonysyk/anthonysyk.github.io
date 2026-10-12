@@ -7,8 +7,8 @@ Site statique d'Anthony SSI YAN KAI : [Astro](https://astro.build) + Tailwind CS
 ```sh
 npm install
 npm run dev       # http://localhost:4321
-npm run build     # astro check + build + index de recherche Pagefind (dist/)
-npm run preview   # sert dist/ (recherche disponible)
+npm run build     # astro check + build (dist/)
+npm run preview   # sert dist/
 npm run lint
 ```
 
@@ -17,7 +17,7 @@ npm run lint
 | Chemin | Rôle |
 | --- | --- |
 | `src/content/{posts,portfolio,pages}` | Contenu Markdown (schémas validés dans `src/content.config.ts`) |
-| `src/pages` | Routes (accueil, articles, portfolio, tags, recherche, RSS, robots) |
+| `src/pages` | Routes (accueil, articles, portfolio, tags, RSS, robots) |
 | `src/layouts`, `src/components` | Mise en page et composants |
 | `src/lib/site.ts` | Config du site (identité, liens, badge `available`), navigation, helpers |
 | `src/styles/global.css` | Design tokens (couleurs clair/sombre en variables CSS), composants, styles du contenu |

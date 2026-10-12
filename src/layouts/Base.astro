@@ -1,6 +1,8 @@
 ---
 import '@fontsource-variable/manrope';
 import '@fontsource-variable/geist-mono';
+import manropeLatin from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url';
+import geistMonoLatin from '@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2?url';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -43,10 +45,12 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang="fr" class="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" href={manropeLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={geistMonoLatin} as="font" type="font/woff2" crossorigin />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
@@ -64,11 +68,6 @@ const jsonLd = {
     <meta property="og:locale" content="fr_FR" />
     <meta name="twitter:card" content="summary_large_image" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-    <script is:inline>
-      const stored = localStorage.getItem('theme');
-      const dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-      document.documentElement.classList.toggle('dark', dark);
-    </script>
   </head>
   <body class="flex min-h-screen flex-col">
     <a
@@ -86,7 +85,7 @@ const jsonLd = {
         <div class="relative isolate flex-1 overflow-x-clip">
           <div class="glow -top-48 right-[-10%] -z-10 h-[28rem] w-[36rem] bg-lavender/20" aria-hidden="true" />
           <div class="glow top-24 left-[-15%] -z-10 h-72 w-[28rem] bg-accent/15" aria-hidden="true" />
-          <main id="main" class="relative mx-auto w-full max-w-5xl px-6 pt-36 pb-32 sm:pt-44">
+          <main id="main" class="relative mx-auto w-full max-w-6xl px-6 pt-36 pb-32 sm:pt-44">
             <slot />
           </main>
         </div>

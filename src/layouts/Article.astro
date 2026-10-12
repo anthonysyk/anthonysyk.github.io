@@ -31,7 +31,7 @@ const toc = headings.filter((h) => h.depth === 2);
 ---
 
 <Base title={title} description={description} image={image} type={article ? 'article' : 'website'} date={date}>
-  <article data-pagefind-body class="mx-auto max-w-[44rem]">
+  <article class="mx-auto max-w-[60rem]">
     {
       back && (
         <a href={back.href} class="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-fg">
@@ -51,7 +51,7 @@ const toc = headings.filter((h) => h.depth === 2);
           </p>
         )
       }
-      <h1 data-pagefind-meta="title" class="page-title leading-[1.1]">{title}</h1>
+      <h1 class="page-title leading-[1.1]">{title}</h1>
       {description && article && <p class="mt-5 text-lg leading-relaxed text-muted">{description}</p>}
       {
         (date || body) && (
