@@ -19,8 +19,8 @@ npm run lint
 | `src/content/{posts,portfolio,pages}` | Contenu Markdown (schémas validés dans `src/content.config.ts`) |
 | `src/pages` | Routes (accueil, articles, portfolio, tags, recherche, RSS, robots) |
 | `src/layouts`, `src/components` | Mise en page et composants |
-| `src/lib/site.ts` | Config du site, navigation, helpers |
-| `src/styles/global.css` | Thème Tailwind, styles du contenu |
+| `src/lib/site.ts` | Config du site (identité, liens, badge `available`), navigation, helpers |
+| `src/styles/global.css` | Design tokens (couleurs clair/sombre en variables CSS), composants, styles du contenu |
 | `public/` | Assets statiques (images WebP, `tools/sasu` = ancien simulateur autonome) |
 
 ## Ajouter du contenu

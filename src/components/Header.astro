@@ -1,35 +1,33 @@
 ---
-import { nav, SITE } from '../lib/site';
+import { nav } from '../lib/site';
+import Logo from './Logo.astro';
 import ThemeToggle from './ThemeToggle.astro';
 const path = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-30 border-b border-zinc-200 bg-white/90 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/90">
-  <div class="mx-auto flex max-w-5xl flex-wrap items-center gap-x-6 gap-y-2 px-6 py-4">
-    <a href="/" class="font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">{SITE.author}</a>
-    <nav
-      aria-label="Navigation principale"
-      class="order-last -ml-2 flex w-full items-center gap-1 text-sm sm:order-none sm:ml-auto sm:w-auto sm:gap-2"
-    >
+<header class="sticky top-0 z-30 border-b border-line bg-bg/80 backdrop-blur-xl">
+  <div class="mx-auto flex max-w-5xl flex-wrap items-center gap-x-6 gap-y-3 px-6 py-3.5">
+    <Logo />
+    <nav aria-label="Navigation principale" class="order-last -ml-3 flex w-full items-center text-sm sm:order-none sm:ml-auto sm:w-auto">
       {
         nav.map((n) => (
           <a
             href={n.href}
             aria-current={path.startsWith(n.href) ? 'page' : undefined}
-            class="rounded-md px-2 py-1 text-zinc-500 transition-colors hover:text-zinc-900 aria-[current=page]:font-medium aria-[current=page]:text-zinc-900 dark:hover:text-zinc-100 dark:aria-[current=page]:text-zinc-100"
+            class="rounded-full px-3 py-1.5 text-muted transition-colors hover:text-fg aria-[current=page]:text-fg"
           >
             {n.label}
           </a>
         ))
       }
     </nav>
-    <div class="-mr-2 ml-auto flex items-center gap-1 sm:ml-0">
+    <div class="-mr-2 ml-auto flex items-center gap-0.5 sm:ml-0">
       <a
         href="/search/"
         aria-label="Rechercher"
-        class="grid size-8 place-items-center rounded-md text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-900 dark:hover:text-zinc-100"
+        class="grid size-8 place-items-center rounded-full text-muted transition-colors hover:bg-surface-2 hover:text-fg"
       >
-        <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"
+        <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"
           ><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg
         >
       </a>

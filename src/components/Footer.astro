@@ -1,21 +1,25 @@
 ---
 import { SITE } from '../lib/site';
+import Logo from './Logo.astro';
 ---
 
-<footer class="mt-32 border-t border-zinc-200 dark:border-zinc-800">
-  <div class="mx-auto flex max-w-5xl flex-col gap-4 px-6 py-8 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
-    <p>© {new Date().getFullYear()} {SITE.author} · {SITE.name}</p>
-    <ul class="flex gap-5">
+<footer class="mt-32 border-t border-line">
+  <div class="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex flex-col gap-2">
+      <Logo />
+      <p class="font-mono text-xs text-muted">© {new Date().getFullYear()} · {SITE.name}</p>
+    </div>
+    <ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
       {
         Object.entries(SITE.social).map(([k, v]) => (
           <li>
-            <a href={v} rel="me noopener" class="transition-colors hover:text-zinc-900 dark:hover:text-zinc-100">
+            <a href={v} rel="me noopener" class="text-muted transition-colors hover:text-fg">
               {k}
             </a>
           </li>
         ))
       }
-      <li><a href="/rss.xml" class="transition-colors hover:text-zinc-900 dark:hover:text-zinc-100">RSS</a></li>
+      <li><a href="/rss.xml" class="text-muted transition-colors hover:text-fg">RSS</a></li>
     </ul>
   </div>
 </footer>

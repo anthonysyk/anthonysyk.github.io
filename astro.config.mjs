@@ -9,7 +9,7 @@ export default defineConfig({
   vite: { plugins: [tailwindcss()] },
   markdown: {
     shikiConfig: {
-      themes: { light: 'github-light', dark: 'github-dark-dimmed' },
+      themes: { light: 'github-light', dark: 'vesper' },
       defaultColor: false,
       wrap: true,
     },

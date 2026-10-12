@@ -1,0 +1,12 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import PostItem from './PostItem.astro';
+interface Props {
+  posts: CollectionEntry<'posts'>[];
+}
+const { posts } = Astro.props;
+---
+
+<ul class="panel divide-y divide-line overflow-hidden">
+  {posts.map((p) => <PostItem post={p} />)}
+</ul>

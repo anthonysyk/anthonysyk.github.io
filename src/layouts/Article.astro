@@ -28,47 +28,50 @@ const {
   article = true,
 } = Astro.props;
 const toc = headings.filter((h) => h.depth === 2);
-const meta = [
-  date && formatDate(date),
-  body && `${readingTime(body)} min de lecture`,
-].filter(Boolean);
 ---
 
 <Base title={title} description={description} image={image} type={article ? 'article' : 'website'} date={date}>
   <article data-pagefind-body class="mx-auto max-w-[44rem]">
     {
       back && (
-        <a href={back.href} class="text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:hover:text-zinc-100">
-          ← {back.label}
+        <a href={back.href} class="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-fg">
+          <span aria-hidden="true">←</span> {back.label}
         </a>
       )
     }
-    <header class="mb-10 mt-6 border-b border-zinc-200 pb-8 dark:border-zinc-800">
+    <header class="mt-8 mb-12">
       {
         categories.length > 0 && (
-          <p class="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500">
-            {categories.map((c, i) => (
-              <>
-                {i > 0 && ' · '}
-                <a href={`/categories/${slugify(c)}/`} class="hover:text-zinc-900 dark:hover:text-zinc-100">
-                  {c}
-                </a>
-              </>
+          <p class="eyebrow mb-4 flex gap-3">
+            {categories.map((c) => (
+              <a href={`/categories/${slugify(c)}/`} class="hover:text-fg">
+                {c}
+              </a>
             ))}
           </p>
         )
       }
-      <h1 data-pagefind-meta="title" class="page-title leading-tight">{title}</h1>
-      {meta.length > 0 && <p class="mt-4 text-sm text-zinc-500">{meta.join(' · ')}</p>}
+      <h1 data-pagefind-meta="title" class="page-title leading-[1.1]">{title}</h1>
+      {description && article && <p class="mt-5 text-lg leading-relaxed text-muted">{description}</p>}
+      {
+        (date || body) && (
+          <p class="mt-6 flex items-center gap-3 font-mono text-xs text-muted">
+            {date && <time datetime={date.toISOString()}>{formatDate(date)}</time>}
+            {date && body && <span class="text-line-strong">/</span>}
+            {body && <span>{readingTime(body)} min de lecture</span>}
+          </p>
+        )
+      }
     </header>
     {
       toc.length > 2 && (
-        <nav aria-label="Sommaire" class="mb-10 rounded-lg border border-zinc-200 px-5 py-4 text-sm dark:border-zinc-800">
-          <p class="section-title mb-3">Sommaire</p>
-          <ol class="space-y-1.5">
-            {toc.map((h) => (
-              <li>
-                <a class="transition-colors hover:text-zinc-900 dark:hover:text-zinc-100" href={`#${h.slug}`}>
+        <nav aria-label="Sommaire" class="panel mb-12 px-6 py-5 text-sm">
+          <p class="eyebrow mb-3">Sommaire</p>
+          <ol class="grid gap-x-6 gap-y-1.5 sm:grid-cols-2">
+            {toc.map((h, i) => (
+              <li class="flex gap-3">
+                <span class="font-mono text-xs leading-5 text-muted">{String(i + 1).padStart(2, '0')}</span>
+                <a class="text-text transition-colors hover:text-fg" href={`#${h.slug}`}>
                   {h.text}
                 </a>
               </li>
@@ -77,15 +80,15 @@ const meta = [
         </nav>
       )
     }
-    <div class="prose prose-zinc dark:prose-invert prose-headings:text-zinc-900 dark:prose-headings:text-zinc-100">
+    <div class="prose">
       <slot />
     </div>
     {
       tags.length > 0 && (
-        <footer class="mt-12 flex flex-wrap gap-2 border-t border-zinc-200 pt-6 dark:border-zinc-800">
+        <footer class="mt-16 flex flex-wrap gap-2 border-t border-line pt-6">
           {tags.map((t) => (
             <a class="tag" href={`/tags/${slugify(t)}/`}>
-              {t}
+              #{t}
             </a>
           ))}
         </footer>

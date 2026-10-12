@@ -1,70 +1,134 @@
 ---
 import Base from '../layouts/Base.astro';
-import PostItem from '../components/PostItem.astro';
+import PostList from '../components/PostList.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { getPosts, getProjects, SITE } from '../lib/site';
 
-const posts = (await getPosts()).slice(0, 5);
-const projects = (await getProjects()).slice(0, 4);
+const allPosts = await getPosts();
+const allProjects = await getProjects();
+const posts = allPosts.slice(0, 5);
+const projects = allProjects.slice(0, 4);
+const years = new Date().getFullYear() - SITE.since;
+
+const stats = [
+  { value: `${years}+`, label: "années d'expérience" },
+  { value: allProjects.length, label: 'missions & projets' },
+  { value: allPosts.length, label: 'articles publiés' },
+];
+
 const expertise = [
-  { title: 'Data engineering', items: 'Spark, Kafka, Airflow, datalakes, ETL batch et streaming' },
-  { title: 'Backend & API', items: 'Scala, Go, gRPC, GraphQL, architectures réactives' },
-  { title: 'Cloud & DevOps', items: 'Google Cloud, Kubernetes, Terraform, optimisation des coûts' },
+  {
+    title: 'Data engineering',
+    text: 'Pipelines batch et streaming, datalakes et ETL à grande échelle.',
+    stack: ['Spark', 'Kafka', 'Airflow', 'BigQuery'],
+  },
+  {
+    title: 'Backend & API',
+    text: 'Services performants, typés et testés, pensés pour durer.',
+    stack: ['Scala', 'Go', 'gRPC', 'GraphQL'],
+  },
+  {
+    title: 'Cloud & DevOps',
+    text: 'Migration cloud, scaling et maîtrise des coûts d’infrastructure.',
+    stack: ['GCP', 'Kubernetes', 'Terraform', 'Cloud Run'],
+  },
 ];
 ---
 
 <Base>
-  <section class="max-w-2xl">
-    <img
-      src="/general/avatar.webp"
-      alt="Anthony SSI YAN KAI"
-      width="64"
-      height="64"
-      class="size-16 rounded-full border border-zinc-200 object-cover dark:border-zinc-800"
-    />
-    <h1 class="page-title mt-8">Anthony SSI YAN KAI</h1>
-    <p class="mt-2 text-lg text-zinc-600 dark:text-zinc-300">Développeur freelance — Data, API &amp; Cloud</p>
-    <p class="mt-6 leading-relaxed">
-      Plus de 7 ans d'expérience en Scala et Go. J'accompagne les équipes sur la conception d'API, les pipelines de
-      données à grande échelle et l'infrastructure cloud, avec une priorité : du code lisible, testé et maintenable.
+  <section class="max-w-3xl">
+    {
+      SITE.available && (
+        <p class="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-xs text-muted">
+          <span class="relative flex size-2">
+            <span class="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-50" />
+            <span class="relative inline-flex size-2 rounded-full bg-accent" />
+          </span>
+          Disponible pour de nouvelles missions
+        </p>
+      )
+    }
+    <h1 class="mt-8 text-5xl leading-[1.02] font-semibold tracking-tighter text-balance text-fg sm:text-7xl">
+      Des plateformes <span class="serif">data</span> et des API <span class="serif">qui durent.</span>
+    </h1>
+    <p class="mt-8 max-w-2xl text-lg leading-relaxed">
+      Je suis <span class="text-fg">{SITE.author}</span>, développeur freelance Scala &amp; Go. J'accompagne les équipes
+      sur leurs pipelines de données, leurs API et leur infrastructure cloud — avec du code lisible, testé et maintenable.
     </p>
-    <div class="mt-8 flex flex-wrap items-center gap-3">
-      <a href={SITE.social.Email} class="btn btn-primary">Me contacter</a>
+    <div class="mt-10 flex flex-wrap items-center gap-3">
+      <a href={SITE.social.Email} class="btn btn-primary">
+        Me contacter <span aria-hidden="true">→</span>
+      </a>
       <a href="/portfolio/" class="btn btn-secondary">Voir les projets</a>
-      <span class="flex gap-4 text-sm sm:ml-2">
-        <a href={SITE.social.GitHub} rel="me noopener" class="link">GitHub</a>
-        <a href={SITE.social.LinkedIn} rel="me noopener" class="link">LinkedIn</a>
-      </span>
     </div>
   </section>
 
-  <section class="mt-24" aria-labelledby="expertise">
-    <div class="section-head"><h2 id="expertise" class="section-title">Expertise</h2></div>
-    <dl class="mt-8 grid gap-8 sm:grid-cols-3">
+  <dl class="panel mt-20 grid grid-cols-3 divide-x divide-line">
+    {
+      stats.map((s) => (
+        <div class="flex flex-col px-4 py-6 sm:px-8">
+          <dt class="order-last mt-1 text-xs text-muted sm:text-sm">{s.label}</dt>
+          <dd class="text-3xl font-semibold tracking-tight text-fg sm:text-4xl">{s.value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <section class="mt-32" aria-labelledby="projects">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Portfolio</p>
+        <h2 id="projects" class="section-title mt-2">Projets sélectionnés</h2>
+      </div>
+      <a href="/portfolio/" class="link text-sm">Tout voir</a>
+    </div>
+    <div class="grid gap-5 sm:grid-cols-2">{projects.map((p) => <ProjectCard project={p} />)}</div>
+  </section>
+
+  <section class="mt-32" aria-labelledby="expertise">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Expertise</p>
+        <h2 id="expertise" class="section-title mt-2">Ce que je fais</h2>
+      </div>
+    </div>
+    <div class="grid gap-5 sm:grid-cols-3">
       {
-        expertise.map((e) => (
-          <div>
-            <dt class="font-medium text-zinc-900 dark:text-zinc-100">{e.title}</dt>
-            <dd class="mt-1.5 text-sm leading-relaxed">{e.items}</dd>
+        expertise.map((e, i) => (
+          <div class="panel flex flex-col p-6">
+            <span class="font-mono text-xs text-muted">0{i + 1}</span>
+            <h3 class="mt-6 font-medium text-fg">{e.title}</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed">{e.text}</p>
+            <ul class="mt-6 flex flex-wrap gap-1.5">
+              {e.stack.map((s) => (
+                <li class="tag">{s}</li>
+              ))}
+            </ul>
           </div>
         ))
       }
-    </dl>
+    </div>
   </section>
 
-  <section class="mt-24" aria-labelledby="projects">
+  <section class="mt-32" aria-labelledby="posts">
     <div class="section-head">
-      <h2 id="projects" class="section-title">Projets sélectionnés</h2>
-      <a href="/portfolio/" class="link text-sm">Tous les projets →</a>
+      <div>
+        <p class="eyebrow">Blog</p>
+        <h2 id="posts" class="section-title mt-2">Articles récents</h2>
+      </div>
+      <a href="/posts/" class="link text-sm">Tout voir</a>
     </div>
-    <div class="mt-8 grid gap-x-8 gap-y-12 sm:grid-cols-2">{projects.map((p) => <ProjectCard project={p} />)}</div>
+    <PostList posts={posts} />
   </section>
 
-  <section class="mt-24" aria-labelledby="posts">
-    <div class="section-head">
-      <h2 id="posts" class="section-title">Articles récents</h2>
-      <a href="/posts/" class="link text-sm">Tous les articles →</a>
+  <section class="panel relative mt-32 overflow-hidden px-6 py-16 text-center sm:px-12">
+    <div class="grid-bg pointer-events-none absolute inset-0 opacity-60" aria-hidden="true"></div>
+    <div class="relative">
+      <h2 class="text-3xl font-semibold tracking-tighter text-fg sm:text-4xl">
+        Un projet en <span class="serif">tête</span> ?
+      </h2>
+      <p class="mx-auto mt-4 max-w-md">Parlons de vos enjeux data, API ou cloud.</p>
+      <a href={SITE.social.Email} class="btn btn-primary mt-8">Écrire un message</a>
     </div>
-    <ul class="divide-y divide-zinc-200 dark:divide-zinc-800">{posts.map((p) => <PostItem post={p} />)}</ul>
   </section>
 </Base>

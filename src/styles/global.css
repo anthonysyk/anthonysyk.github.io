@@ -2,100 +2,139 @@
 @plugin '@tailwindcss/typography';
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme {
-  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-}
-
+/* Design tokens : toutes les couleurs passent par ces variables (clair / sombre) */
 :root {
-  --accent: #1d4ed8;
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --surface-2: #f4f4f5;
+  --line: #e8e8e8;
+  --line-strong: #d4d4d8;
+  --fg: #09090b;
+  --text: #3f3f46;
+  --muted: #71717a;
+  --accent: #16a34a;
   color-scheme: light;
 }
 .dark {
-  --accent: #8fb0f3;
+  --bg: #09090b;
+  --surface: #111113;
+  --surface-2: #18181b;
+  --line: #222225;
+  --line-strong: #34343a;
+  --fg: #ededef;
+  --text: #a1a1aa;
+  --muted: #71717a;
+  --accent: #4ade80;
   color-scheme: dark;
 }
 
-body {
-  @apply bg-white font-sans text-zinc-700 antialiased;
-  font-feature-settings: 'cv11', 'ss01';
+@theme inline {
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
 }
-.dark body {
-  @apply bg-zinc-950 text-zinc-400;
+
+body {
+  @apply bg-bg font-sans text-text antialiased;
+}
+::selection {
+  background: color-mix(in oklab, var(--fg) 18%, transparent);
 }
 
 /* Composants */
+.serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.grid-bg {
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 60% 70% at 50% 0%, #000 30%, transparent 100%);
+}
 .page-title {
-  @apply text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl;
+  @apply text-4xl font-semibold tracking-tighter text-balance text-fg sm:text-5xl;
 }
-.dark .page-title {
-  @apply text-zinc-50;
-}
-.section-head {
-  @apply flex items-baseline justify-between border-b border-zinc-200 pb-3;
-}
-.dark .section-head {
-  @apply border-zinc-800;
-}
-.section-title {
-  @apply text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500;
+.eyebrow {
+  @apply font-mono text-[11px] tracking-[0.14em] text-muted uppercase;
 }
 .link {
-  color: var(--accent);
-  @apply underline-offset-4 hover:underline;
+  @apply text-fg underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-fg;
 }
 .tag {
-  @apply inline-flex items-center rounded-md border border-zinc-200 px-2 py-0.5 text-xs text-zinc-600 transition-colors hover:border-zinc-400 hover:text-zinc-900;
-}
-.dark .tag {
-  @apply border-zinc-800 text-zinc-400 hover:border-zinc-600 hover:text-zinc-100;
+  @apply inline-flex items-center gap-1 rounded-full border border-line bg-surface px-2.5 py-0.5 font-mono text-[11px] text-muted transition-colors hover:border-line-strong hover:text-fg;
 }
 .btn {
-  @apply inline-flex items-center rounded-md px-4 py-2 text-sm font-medium transition;
+  @apply inline-flex h-10 items-center gap-2 rounded-full px-5 text-sm font-medium transition;
 }
 .btn-primary {
-  @apply bg-zinc-900 text-white hover:bg-zinc-700;
-}
-.dark .btn-primary {
-  @apply bg-zinc-100 text-zinc-900 hover:bg-white;
+  @apply bg-fg text-bg hover:opacity-85;
 }
 .btn-secondary {
-  @apply border border-zinc-300 text-zinc-800 hover:bg-zinc-50;
+  @apply border border-line-strong bg-surface text-fg hover:bg-surface-2;
 }
-.dark .btn-secondary {
-  @apply border-zinc-700 text-zinc-200 hover:bg-zinc-900;
+.panel {
+  @apply rounded-2xl border border-line bg-surface;
+}
+.section-head {
+  @apply mb-8 flex items-end justify-between gap-4;
+}
+.section-title {
+  @apply text-2xl font-semibold tracking-tight text-fg;
 }
 
 /* Contenu markdown */
 .prose {
-  @apply max-w-none;
+  --tw-prose-body: var(--text);
+  --tw-prose-headings: var(--fg);
+  --tw-prose-lead: var(--text);
+  --tw-prose-links: var(--fg);
+  --tw-prose-bold: var(--fg);
+  --tw-prose-counters: var(--muted);
+  --tw-prose-bullets: var(--line-strong);
+  --tw-prose-hr: var(--line);
+  --tw-prose-quotes: var(--fg);
+  --tw-prose-quote-borders: var(--line-strong);
+  --tw-prose-captions: var(--muted);
+  --tw-prose-code: var(--fg);
+  --tw-prose-th-borders: var(--line-strong);
+  --tw-prose-td-borders: var(--line);
+  @apply max-w-none text-[1.0625rem] leading-[1.8];
 }
 .prose :where(a):not(.tag) {
-  color: var(--accent);
-  @apply font-normal underline-offset-4;
-}
-.prose :where(img) {
-  @apply mx-auto rounded-lg border border-zinc-200 dark:border-zinc-800;
+  @apply font-normal decoration-line-strong underline-offset-4 transition-colors hover:decoration-fg;
 }
 .prose :where(h2, h3, h4) {
   @apply font-semibold tracking-tight;
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 6rem;
+}
+.prose :where(img) {
+  @apply mx-auto rounded-xl border border-line;
 }
 .prose :where(code):not(pre code) {
-  @apply rounded bg-zinc-100 px-1.5 py-0.5 text-[0.85em] font-medium dark:bg-zinc-800/80;
+  @apply rounded-md border border-line bg-surface-2 px-1.5 py-0.5 font-mono text-[0.85em] font-normal;
 }
 .prose :where(code):not(pre code)::before,
-.prose :where(code):not(pre code)::after {
+.prose :where(code):not(pre code)::after,
+.prose blockquote p::before,
+.prose blockquote p::after {
   content: none;
 }
 .prose pre {
-  @apply rounded-lg border border-zinc-200 text-[0.85rem] leading-relaxed dark:border-zinc-800;
-}
-.prose pre.astro-code {
-  background-color: var(--shiki-light-bg) !important;
-}
-.dark .prose pre.astro-code {
-  background-color: var(--shiki-dark-bg) !important;
+  @apply rounded-xl border border-line font-mono text-[0.84rem] leading-relaxed;
+  background-color: var(--surface) !important;
 }
 .astro-code span {
   color: var(--shiki-light);
@@ -103,55 +142,54 @@ body {
 .dark .astro-code span {
   color: var(--shiki-dark);
 }
-.prose blockquote p::before,
-.prose blockquote p::after {
-  content: none;
-}
 .prose table {
   @apply block overflow-x-auto;
 }
 
 .admonition {
-  @apply my-6 rounded-md border border-l-4 border-zinc-200 border-l-zinc-400 bg-zinc-50 px-5 py-1 text-[0.95em];
-}
-.dark .admonition {
-  @apply border-zinc-800 border-l-zinc-600 bg-zinc-900/60;
+  @apply my-7 rounded-xl border border-line bg-surface px-5 py-1 text-[0.95em];
+  --dot: var(--muted);
 }
 .admonition-title {
-  @apply !mb-1 !mt-3 text-sm font-semibold text-zinc-900 dark:text-zinc-100;
+  @apply !mt-4 !mb-1 flex items-center gap-2 font-mono text-xs tracking-wider text-fg uppercase;
+}
+.admonition-title::before {
+  content: '';
+  @apply size-1.5 rounded-full;
+  background: var(--dot);
 }
 .admonition-note {
-  @apply !border-l-sky-600;
+  --dot: #3b82f6;
 }
 .admonition-tip {
-  @apply !border-l-emerald-600;
+  --dot: #22c55e;
 }
 .admonition-warning {
-  @apply !border-l-amber-500;
+  --dot: #f59e0b;
 }
 .admonition-question {
-  @apply !border-l-indigo-500;
+  --dot: #a855f7;
 }
 .admonition-quote {
   @apply italic;
 }
 
 /* Pagefind */
-:root {
-  --pagefind-ui-primary: var(--accent);
-  --pagefind-ui-border-radius: 6px;
+#search {
+  --pagefind-ui-primary: var(--fg);
+  --pagefind-ui-text: var(--fg);
+  --pagefind-ui-background: var(--surface);
+  --pagefind-ui-border: var(--line);
+  --pagefind-ui-tag: var(--surface-2);
+  --pagefind-ui-border-radius: 12px;
   --pagefind-ui-border-width: 1px;
   --pagefind-ui-font: var(--font-sans);
 }
-.dark {
-  --pagefind-ui-text: #e4e4e7;
-  --pagefind-ui-background: #09090b;
-  --pagefind-ui-border: #27272a;
-  --pagefind-ui-tag: #18181b;
-}
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  *::before {
+    animation: none !important;
     transition: none !important;
   }
 }

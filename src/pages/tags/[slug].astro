@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import PostItem from '../../components/PostItem.astro';
+import PostList from '../../components/PostList.astro';
 import { getPosts, groupBy } from '../../lib/site';
 
 export async function getStaticPaths() {
@@ -11,12 +11,10 @@ const { label, posts } = Astro.props;
 ---
 
 <Base title={`Tag : ${label}`} noindex>
-  <a href="/posts/" class="text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
-    >← Articles</a
+  <a href="/posts/" class="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-fg"
+    ><span aria-hidden="true">←</span> Articles</a
   >
-  <p class="section-title mt-6">Tag</p>
-  <h1 class="page-title mt-2">{label}</h1>
-  <ul class="mt-10 divide-y divide-zinc-200 border-t border-zinc-200 dark:divide-zinc-800 dark:border-zinc-800">
-    {posts.map((p) => <PostItem post={p} />)}
-  </ul>
+  <p class="eyebrow mt-8">Tag</p>
+  <h1 class="page-title mt-3">#{label}</h1>
+  <div class="mt-12"><PostList posts={posts} /></div>
 </Base>

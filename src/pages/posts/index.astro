@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import PostItem from '../../components/PostItem.astro';
+import PostList from '../../components/PostList.astro';
 import { getPosts, groupBy } from '../../lib/site';
 
 const posts = await getPosts();
@@ -10,22 +10,21 @@ const tags = [...groupBy(posts, 'tags')]
 ---
 
 <Base title="Articles" description="Retours d'expérience sur Scala, Go, big data, cloud et architecture.">
-  <h1 class="page-title">Articles</h1>
-  <p class="mt-3 max-w-2xl leading-relaxed">
-    Retours d'expérience sur Scala, Go, la data et le cloud. {posts.length} articles —{' '}
+  <p class="eyebrow">Blog</p>
+  <h1 class="page-title mt-3">Notes &amp; <span class="serif">retours d'expérience</span></h1>
+  <p class="mt-5 max-w-2xl text-lg leading-relaxed">
+    Scala, Go, data et cloud : ce que j'ai appris en production. {posts.length} articles —{' '}
     <a class="link" href="/search/">rechercher</a>.
   </p>
-  <div class="mt-6 flex flex-wrap gap-2">
+  <div class="mt-8 flex flex-wrap gap-2">
     {
       tags.map(([slug, t]) => (
         <a class="tag" href={`/tags/${slug}/`}>
-          {t.label}
-          <span class="ml-1 text-zinc-400">{t.posts.length}</span>
+          #{t.label}
+          <span class="text-line-strong">{t.posts.length}</span>
         </a>
       ))
     }
   </div>
-  <ul class="mt-10 divide-y divide-zinc-200 border-t border-zinc-200 dark:divide-zinc-800 dark:border-zinc-800">
-    {posts.map((p) => <PostItem post={p} />)}
-  </ul>
+  <div class="mt-12"><PostList posts={posts} /></div>
 </Base>
