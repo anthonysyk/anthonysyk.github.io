@@ -6,7 +6,7 @@ summary: Développeur Backend Senior et référent technique sur TF1+, la
 image: /projects/tf1/preview.webp
 ---
 
-TF1+ est la plateforme de streaming du Groupe TF1, disponible sur le web, le mobile et la TV connectée.
+TF1+ est la plateforme de streaming du Groupe TF1, disponible sur le web, le mobile et la TV connectée. Une plateforme à forte audience : elle réunit en moyenne **5,7 millions d'utilisateurs quotidiens**, selon les dernières données communiquées par TF1+.
 
 ## Poste : Développeur Backend Senior / Référent technique
 
