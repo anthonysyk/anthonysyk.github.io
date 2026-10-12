@@ -3,6 +3,7 @@ title: TF1+ - Plateforme de streaming
 date: 2025-09-01
 summary: Développeur Backend Senior et référent technique sur TF1+, la
   plateforme de streaming du Groupe TF1.
+image: /projects/tf1/preview.webp
 ---
 
 TF1+ est la plateforme de streaming du Groupe TF1, disponible sur le web, le mobile et la TV connectée.
@@ -19,3 +20,7 @@ TF1+ est la plateforme de streaming du Groupe TF1, disponible sur le web, le mob
 - Dashboards d'observabilité : monitoring des déploiements progressifs, latence, timeouts et performances applicatives
 
 **Stack: Go, GraphQL, gRPC, Kafka, AWS, Kubernetes, Terraform, Redis, MongoDB, Elasticsearch, Datadog**
+
+## Produit
+
+![TF1+](/projects/tf1/portfolio-tf1.webp)
