@@ -6,31 +6,27 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<a href={`/portfolio/${project.id}/`} class="panel group flex flex-col p-2 transition-colors hover:border-line-strong">
-  <div class="overflow-hidden rounded-xl border border-line bg-surface-2">
-    <div class="flex h-7 items-center gap-1.5 border-b border-line px-3" aria-hidden="true">
-      <span class="size-2 rounded-full bg-line-strong"></span>
-      <span class="size-2 rounded-full bg-line-strong"></span>
-      <span class="size-2 rounded-full bg-line-strong"></span>
-    </div>
-    <div class="aspect-[16/10] overflow-hidden">
-      {
-        project.data.image && (
-          <img
-            src={project.data.image}
-            alt=""
-            loading="lazy"
-            class="size-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-          />
-        )
-      }
-    </div>
+<a
+  href={`/portfolio/${project.id}/`}
+  class="panel group flex flex-col overflow-hidden transition duration-300 hover:-translate-y-1"
+>
+  <div class="aspect-[16/9] overflow-hidden bg-[#141415]">
+    {
+      project.data.image && (
+        <img
+          src={project.data.image}
+          alt=""
+          loading="lazy"
+          class="size-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+        />
+      )
+    }
   </div>
-  <div class="flex flex-1 flex-col px-3 pt-4 pb-3">
+  <div class="flex flex-1 flex-col p-6">
     <div class="flex items-baseline justify-between gap-4">
-      <h3 class="font-medium text-fg">{project.data.title}</h3>
-      <span class="shrink-0 font-mono text-xs text-muted">{project.data.date.getUTCFullYear()}</span>
+      <h3 class="text-lg font-medium tracking-tight text-fg">{project.data.title}</h3>
+      <span class="shrink-0 text-xs text-muted">{project.data.date.getUTCFullYear()}</span>
     </div>
-    <p class="mt-1.5 line-clamp-2 text-sm leading-relaxed text-muted">{project.data.summary}</p>
+    <p class="mt-2 line-clamp-2 text-sm leading-relaxed">{project.data.summary}</p>
   </div>
 </a>

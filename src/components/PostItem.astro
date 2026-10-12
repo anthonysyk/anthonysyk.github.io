@@ -7,15 +7,19 @@ interface Props {
 const { post } = Astro.props;
 ---
 
-<li class="group relative flex flex-col gap-1 px-5 py-5 transition-colors hover:bg-surface-2 sm:flex-row sm:items-baseline sm:gap-6 sm:px-6">
+<li class="group relative flex flex-col gap-1 px-6 py-5 transition-colors hover:bg-surface-2 sm:flex-row sm:items-center sm:gap-8">
+  <p class="order-first w-24 shrink-0 text-xs text-muted">
+    <time datetime={post.data.date.toISOString()}>{formatMonth(post.data.date)}</time>
+  </p>
   <div class="min-w-0 flex-1">
     <h3 class="font-medium text-fg">
       <a href={`/posts/${post.id}/`} class="after:absolute after:inset-0">{post.data.title}</a>
     </h3>
     {post.data.summary && <p class="mt-1 line-clamp-1 text-sm text-muted">{post.data.summary}</p>}
   </div>
-  <p class="order-first shrink-0 font-mono text-xs text-muted sm:order-none">
-    <time datetime={post.data.date.toISOString()}>{formatMonth(post.data.date)}</time>
-    <span class="mx-1.5 text-line-strong">/</span>{readingTime(post.body)} min
-  </p>
+  <p class="hidden shrink-0 text-xs text-muted sm:block">{readingTime(post.body)} min</p>
+  <span
+    aria-hidden="true"
+    class="hidden text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-fg sm:block">→</span
+  >
 </li>

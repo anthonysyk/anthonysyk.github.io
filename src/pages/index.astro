@@ -2,133 +2,181 @@
 import Base from '../layouts/Base.astro';
 import PostList from '../components/PostList.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import { getPosts, getProjects, SITE } from '../lib/site';
+import ExpertiseIcon from '../components/ExpertiseIcon.astro';
+import { formatMonth, getPosts, getProjects, SITE } from '../lib/site';
 
 const allPosts = await getPosts();
 const allProjects = await getProjects();
-const posts = allPosts.slice(0, 5);
-const projects = allProjects.slice(0, 4);
-const years = new Date().getFullYear() - SITE.since;
+const latest = allPosts[0];
 
 const stats = [
-  { value: `${years}+`, label: "années d'expérience" },
+  { value: `${new Date().getFullYear() - SITE.since}+ ans`, label: "d'expérience" },
   { value: allProjects.length, label: 'missions & projets' },
   { value: allPosts.length, label: 'articles publiés' },
 ];
 
+const stack = ['Scala', 'Go', 'Kafka', 'Spark', 'Airflow', 'BigQuery', 'Kubernetes', 'Terraform', 'GCP'];
+
 const expertise = [
   {
+    icon: 'data',
     title: 'Data engineering',
-    text: 'Pipelines batch et streaming, datalakes et ETL à grande échelle.',
-    stack: ['Spark', 'Kafka', 'Airflow', 'BigQuery'],
+    text: 'Je conçois des pipelines batch et streaming, des datalakes et des ETL à grande échelle.',
   },
   {
+    icon: 'api',
     title: 'Backend & API',
-    text: 'Services performants, typés et testés, pensés pour durer.',
-    stack: ['Scala', 'Go', 'gRPC', 'GraphQL'],
+    text: 'Je développe des services typés, testés et performants, pensés pour durer.',
   },
   {
+    icon: 'cloud',
     title: 'Cloud & DevOps',
-    text: 'Migration cloud, scaling et maîtrise des coûts d’infrastructure.',
-    stack: ['GCP', 'Kubernetes', 'Terraform', 'Cloud Run'],
+    text: "J'accompagne les migrations cloud, le scaling et la maîtrise des coûts d'infra.",
+  },
+  {
+    icon: 'product',
+    title: 'Côté produit',
+    text: 'Du besoin métier à la mise en production, en équipe et sans dette technique.',
   },
 ];
 ---
 
-<Base>
-  <section class="max-w-3xl">
-    {
-      SITE.available && (
-        <p class="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-xs text-muted">
-          <span class="relative flex size-2">
-            <span class="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-50" />
-            <span class="relative inline-flex size-2 rounded-full bg-accent" />
-          </span>
-          Disponible pour de nouvelles missions
+<Base bare>
+  <!-- Hero : toujours sombre -->
+  <section class="dark relative isolate overflow-hidden bg-bg px-6 pt-36 pb-16 text-text sm:pt-44">
+    <div class="glow -top-40 right-[-5%] -z-10 h-[32rem] w-[42rem] bg-lavender/20" aria-hidden="true"></div>
+    <div class="glow top-60 -left-40 -z-10 h-80 w-[30rem] bg-accent/10" aria-hidden="true"></div>
+
+    <div class="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)] items-center gap-16 lg:grid-cols-[1.15fr_1fr]">
+      <div>
+        {
+          SITE.available && (
+            <p class="inline-flex items-center gap-2 rounded-full border border-line bg-surface/60 px-3.5 py-1.5 text-xs">
+              <span class="relative flex size-2">
+                <span class="absolute inline-flex size-full animate-ping rounded-full bg-[#7ee2a8] opacity-60" />
+                <span class="relative inline-flex size-2 rounded-full bg-[#7ee2a8]" />
+              </span>
+              Disponible pour de nouvelles missions
+            </p>
+          )
+        }
+        <h1 class="display mt-8 text-[3.25rem] sm:text-7xl lg:text-[5.25rem]">
+          Salut, moi c'est <span class="grad">Anthony.</span>
+        </h1>
+        <p class="mt-8 max-w-xl text-lg leading-relaxed sm:text-xl">
+          Développeur freelance <span class="text-fg">Scala &amp; Go</span> depuis {SITE.since}. J'aide les équipes à
+          construire des plateformes data, des API et une infra cloud qui tiennent dans la durée.
         </p>
-      )
-    }
-    <h1 class="mt-8 text-5xl leading-[1.02] font-semibold tracking-tighter text-balance text-fg sm:text-7xl">
-      Des plateformes <span class="serif">data</span> et des API <span class="serif">qui durent.</span>
-    </h1>
-    <p class="mt-8 max-w-2xl text-lg leading-relaxed">
-      Je suis <span class="text-fg">{SITE.author}</span>, développeur freelance Scala &amp; Go. J'accompagne les équipes
-      sur leurs pipelines de données, leurs API et leur infrastructure cloud — avec du code lisible, testé et maintenable.
-    </p>
-    <div class="mt-10 flex flex-wrap items-center gap-3">
-      <a href={SITE.social.Email} class="btn btn-primary">
-        Me contacter <span aria-hidden="true">→</span>
-      </a>
-      <a href="/portfolio/" class="btn btn-secondary">Voir les projets</a>
-    </div>
-  </section>
-
-  <dl class="panel mt-20 grid grid-cols-3 divide-x divide-line">
-    {
-      stats.map((s) => (
-        <div class="flex flex-col px-4 py-6 sm:px-8">
-          <dt class="order-last mt-1 text-xs text-muted sm:text-sm">{s.label}</dt>
-          <dd class="text-3xl font-semibold tracking-tight text-fg sm:text-4xl">{s.value}</dd>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href={SITE.social.Email} class="btn btn-lg btn-primary">Me contacter</a>
+          <a href="/portfolio/" class="btn btn-lg btn-secondary">Voir mes projets</a>
         </div>
-      ))
-    }
-  </dl>
-
-  <section class="mt-32" aria-labelledby="projects">
-    <div class="section-head">
-      <div>
-        <p class="eyebrow">Portfolio</p>
-        <h2 id="projects" class="section-title mt-2">Projets sélectionnés</h2>
+        <dl class="mt-12 grid max-w-lg grid-cols-3 gap-3">
+          {
+            stats.map((s) => (
+              <div class="panel flex flex-col items-center px-2 py-5 text-center">
+                <dd class="text-xl font-medium text-fg">{s.value}</dd>
+                <dt class="mt-1 text-xs text-muted">{s.label}</dt>
+              </div>
+            ))
+          }
+        </dl>
       </div>
-      <a href="/portfolio/" class="link text-sm">Tout voir</a>
+
+      <div class="relative mx-auto w-full max-w-md lg:mr-0">
+        <div class="glow inset-6 -z-10 bg-lavender/40" aria-hidden="true"></div>
+        <img
+          src="/general/avatar.webp"
+          alt={`Portrait de ${SITE.author}`}
+          width="815"
+          height="815"
+          class="aspect-square w-full rounded-[36px] border border-white/10 object-cover shadow-[0_40px_120px_-30px_rgba(142,155,245,0.5)]"
+        />
+        <p
+          class="panel absolute top-6 -right-3 hidden items-center gap-2 px-4 py-2.5 text-sm text-fg backdrop-blur sm:flex"
+        >
+          <span class="grad font-medium">Scala</span> · <span class="grad font-medium">Go</span> · Data
+        </p>
+        <a
+          href={`/posts/${latest.id}/`}
+          class="panel absolute -bottom-8 -left-6 hidden w-64 p-4 backdrop-blur transition hover:-translate-y-0.5 sm:block"
+        >
+          <span class="eyebrow text-[10px]">Dernier article</span>
+          <span class="mt-1.5 block text-sm leading-snug text-fg">{latest.data.title}</span>
+          <span class="mt-2 block text-xs text-muted">{formatMonth(latest.data.date)}</span>
+        </a>
+      </div>
     </div>
-    <div class="grid gap-5 sm:grid-cols-2">{projects.map((p) => <ProjectCard project={p} />)}</div>
+
+    <div class="mx-auto mt-24 max-w-6xl border-t border-line pt-10 text-center">
+      <p class="text-xs tracking-[0.1em] text-muted uppercase">Ma stack au quotidien</p>
+      <ul class="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-xl font-medium tracking-tight text-white/30">
+        {stack.map((s) => <li>{s}</li>)}
+      </ul>
+    </div>
   </section>
 
-  <section class="mt-32" aria-labelledby="expertise">
-    <div class="section-head">
-      <div>
-        <p class="eyebrow">Expertise</p>
-        <h2 id="expertise" class="section-title mt-2">Ce que je fais</h2>
-      </div>
-    </div>
-    <div class="grid gap-5 sm:grid-cols-3">
+  <!-- Expertise : bande noire -->
+  <section class="dark bg-black px-6 py-24 text-text" aria-labelledby="expertise">
+    <p id="expertise" class="eyebrow text-center">Ce que je fais</p>
+    <div class="mx-auto mt-14 grid max-w-6xl gap-12 sm:grid-cols-2 lg:grid-cols-4">
       {
-        expertise.map((e, i) => (
-          <div class="panel flex flex-col p-6">
-            <span class="font-mono text-xs text-muted">0{i + 1}</span>
-            <h3 class="mt-6 font-medium text-fg">{e.title}</h3>
-            <p class="mt-2 flex-1 text-sm leading-relaxed">{e.text}</p>
-            <ul class="mt-6 flex flex-wrap gap-1.5">
-              {e.stack.map((s) => (
-                <li class="tag">{s}</li>
-              ))}
-            </ul>
+        expertise.map((e) => (
+          <div class="flex flex-col items-center text-center">
+            <ExpertiseIcon name={e.icon} id={`g-${e.icon}`} />
+            <h3 class="mt-6 text-xl text-fg">{e.title}</h3>
+            <p class="mt-2 max-w-[16rem] text-sm leading-relaxed">{e.text}</p>
           </div>
         ))
       }
     </div>
   </section>
 
-  <section class="mt-32" aria-labelledby="posts">
-    <div class="section-head">
-      <div>
-        <p class="eyebrow">Blog</p>
-        <h2 id="posts" class="section-title mt-2">Articles récents</h2>
-      </div>
-      <a href="/posts/" class="link text-sm">Tout voir</a>
-    </div>
-    <PostList posts={posts} />
-  </section>
+  <!-- Projets & articles : suivent le thème clair/sombre -->
+  <div class="px-6 py-24 sm:py-32">
+    <div class="mx-auto max-w-6xl">
+      <section aria-labelledby="projects">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Portfolio</p>
+            <h2 id="projects" class="section-title">Projets <span class="grad">sélectionnés</span></h2>
+          </div>
+          <a href="/portfolio/" class="btn btn-secondary">Tout voir →</a>
+        </div>
+        <div class="grid gap-6 sm:grid-cols-2">{allProjects.slice(0, 4).map((p) => <ProjectCard project={p} />)}</div>
+      </section>
 
-  <section class="panel relative mt-32 overflow-hidden px-6 py-16 text-center sm:px-12">
-    <div class="grid-bg pointer-events-none absolute inset-0 opacity-60" aria-hidden="true"></div>
-    <div class="relative">
-      <h2 class="text-3xl font-semibold tracking-tighter text-fg sm:text-4xl">
-        Un projet en <span class="serif">tête</span> ?
-      </h2>
-      <p class="mx-auto mt-4 max-w-md">Parlons de vos enjeux data, API ou cloud.</p>
-      <a href={SITE.social.Email} class="btn btn-primary mt-8">Écrire un message</a>
+      <section class="mt-28 sm:mt-36" aria-labelledby="posts">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Blog</p>
+            <h2 id="posts" class="section-title">Articles <span class="grad">récents</span></h2>
+          </div>
+          <a href="/posts/" class="btn btn-secondary">Tous les articles →</a>
+        </div>
+        <PostList posts={allPosts.slice(0, 5)} />
+      </section>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <section class="dark relative isolate overflow-hidden bg-bg px-6 py-28 text-center text-text">
+    <div class="glow top-1/2 left-1/2 -z-10 h-72 w-[40rem] -translate-x-1/2 -translate-y-1/2 bg-lavender/20" aria-hidden="true"></div>
+    <img
+      src="/general/avatar.webp"
+      alt=""
+      width="80"
+      height="80"
+      class="mx-auto size-20 rounded-full border border-white/10 object-cover"
+      loading="lazy"
+    />
+    <h2 class="display mt-8 text-4xl sm:text-6xl">Travaillons <span class="grad">ensemble.</span></h2>
+    <p class="mx-auto mt-5 max-w-md text-lg">
+      Un pipeline data, une API à construire ou une infra à faire évoluer ? Écris-moi, je réponds rapidement.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      <a href={SITE.social.Email} class="btn btn-lg btn-primary">Écrire un message</a>
+      <a href={SITE.social.LinkedIn} rel="me noopener" class="btn btn-lg btn-secondary">LinkedIn</a>
     </div>
   </section>
 </Base>

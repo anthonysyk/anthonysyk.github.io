@@ -1,7 +1,6 @@
 ---
-import '@fontsource-variable/geist';
+import '@fontsource-variable/manrope';
 import '@fontsource-variable/geist-mono';
-import '@fontsource/instrument-serif/400-italic.css';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -14,8 +13,18 @@ interface Props {
   type?: 'website' | 'article';
   date?: Date;
   noindex?: boolean;
+  /** Pleine largeur, sans conteneur ni marges : la page gère ses propres sections */
+  bare?: boolean;
 }
-const { title, description = SITE.description, image = '/cover.jpeg', type = 'website', date, noindex } = Astro.props;
+const {
+  title,
+  description = SITE.description,
+  image = '/cover.jpeg',
+  type = 'website',
+  date,
+  noindex,
+  bare = false,
+} = Astro.props;
 const fullTitle = title ? `${title} | ${SITE.name}` : SITE.title;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site);
@@ -68,12 +77,21 @@ const jsonLd = {
       >Aller au contenu</a
     >
     <Header />
-    <div class="relative flex-1 overflow-x-clip">
-      <div class="grid-bg pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px]" aria-hidden="true"></div>
-      <main id="main" class="mx-auto w-full max-w-5xl px-6 pt-16 sm:pt-24">
-        <slot />
-      </main>
-    </div>
+    {
+      bare ? (
+        <main id="main" class="flex-1 overflow-x-clip">
+          <slot />
+        </main>
+      ) : (
+        <div class="relative isolate flex-1 overflow-x-clip">
+          <div class="glow -top-48 right-[-10%] -z-10 h-[28rem] w-[36rem] bg-lavender/20" aria-hidden="true" />
+          <div class="glow top-24 left-[-15%] -z-10 h-72 w-[28rem] bg-accent/15" aria-hidden="true" />
+          <main id="main" class="relative mx-auto w-full max-w-5xl px-6 pt-36 pb-32 sm:pt-44">
+            <slot />
+          </main>
+        </div>
+      )
+    }
     <Footer />
   </body>
 </html>
