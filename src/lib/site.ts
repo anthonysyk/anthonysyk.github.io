@@ -4,8 +4,8 @@ export const SITE = {
   name: 'Versatile Flow',
   author: 'Anthony SSI YAN KAI',
   title: 'Versatile Flow | Anthony SSI YAN KAI',
-  description: 'Blog et portfolio de Anthony SSI YAN KAI — développeur Scala & Go, data, cloud et DevOps.',
-  role: 'Développeur · Scala & Go',
+  description: 'Blog et portfolio de Anthony SSI YAN KAI — développeur backend Go & Cloud, data et DevOps.',
+  role: 'Développeur Backend · Go & Cloud',
   /** Affiche le badge « Disponible » sur l'accueil */
   available: false,
   /** Année de début de carrière, pour le calcul des années d'expérience */
