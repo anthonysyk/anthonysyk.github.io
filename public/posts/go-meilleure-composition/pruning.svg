@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 270" font-family="system-ui, sans-serif" font-size="14">
+  <style>
+    text{fill:#f2f2f4}
+    .s{font-size:12px;fill:#a8a9b2}
+  </style>
+  <rect width="760" height="270" rx="14" fill="#1c1c1e"/>
+  <text x="20" y="28" font-weight="600">Même lineup trouvée, de 100 millions à 4 806 essais</text>
+  <rect x="20" y="50" width="720" height="44" rx="6" fill="#4a2a2a" stroke="#b15b5b"/>
+  <text x="30" y="77">Tout essayer : 25 × 50 × 50 × 40 × 40 = 100 M de lineups</text>
+  <rect x="20" y="108" width="720" height="44" rx="6" fill="#30446b" stroke="#5b7db1"/>
+  <text x="30" y="135">+ règle « trop cher » : on arrête si le cap est déjà dépassé d'avance</text>
+  <rect x="20" y="166" width="720" height="44" rx="6" fill="#4468a3" stroke="#7ea6dd"/>
+  <text x="30" y="193">+ règle « pas assez fort » : on arrête si on ne peut plus battre la meilleure lineup</text>
+  <rect x="20" y="224" width="40" height="30" rx="6" fill="#3d7a4f" stroke="#6fbf8a"/>
+  <text class="s" x="76" y="244">4 806 essais, même lineup optimale</text>
+</svg>

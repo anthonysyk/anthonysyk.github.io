@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400" font-family="system-ui, sans-serif" font-size="14">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#a8a9b2"/></marker>
+  </defs>
+  <style>
+    .b{fill:#242427;stroke:#74757f;stroke-width:1.5}
+    .d{fill:#3a3120;stroke:#d9a873;stroke-width:1.5}
+    .ok{fill:#1f3a2a;stroke:#4fb27a;stroke-width:1.5}
+    .ko{fill:#3d2222;stroke:#e06c5f;stroke-width:1.5}
+    .l{stroke:#a8a9b2;stroke-width:1.5;fill:none}
+    text{fill:#f2f2f4;text-anchor:middle}
+    .s{font-size:12px;fill:#a8a9b2}
+  </style>
+  <rect width="760" height="400" rx="14" fill="#1c1c1e"/>
+  <rect class="b" x="20" y="170" width="110" height="50" rx="8"/><text x="75" y="200">Requête</text>
+  <path class="l" d="M130 195H170" marker-end="url(#a)"/>
+  <path class="d" d="M240 150L300 195L240 240L180 195z"/><text x="240" y="192">hash(id) %100</text><text x="240" y="209">&lt; seuil ?</text>
+  <path class="l" d="M240 150V90H420" marker-end="url(#a)"/><text class="s" x="320" y="82">oui (ou id absent)</text>
+  <path class="l" d="M240 240V320H420" marker-end="url(#a)"/><text class="s" x="300" y="338">non</text>
+  <rect class="b" x="420" y="65" width="150" height="50" rx="8"/><text x="495" y="87">Nouvelle source</text><text class="s" x="495" y="105">timeout 200 ms</text>
+  <rect class="b" x="420" y="295" width="150" height="50" rx="8"/><text x="495" y="325">Ancienne source</text>
+  <path class="l" d="M570 90H640" marker-end="url(#a)"/><text class="s" x="605" y="82">succès</text>
+  <path class="l" d="M495 115V170" marker-end="url(#a)"/><text class="s" x="560" y="148">timeout / erreur</text>
+  <rect class="ko" x="420" y="170" width="150" height="50" rx="8"/><text x="495" y="200">fallback + log</text>
+  <path class="l" d="M495 220V295" marker-end="url(#a)"/>
+  <rect class="ok" x="640" y="65" width="100" height="50" rx="8"/><text x="690" y="95">Réponse</text>
+  <path class="l" d="M570 320H690V115" marker-end="url(#a)"/>
+  <text class="s" x="605" y="372">erreur de validation : pas de fallback, l'erreur est renvoyée</text>
+</svg>

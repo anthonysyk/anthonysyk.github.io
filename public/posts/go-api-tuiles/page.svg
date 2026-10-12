@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" font-family="system-ui, sans-serif" font-size="14">
+  <style>
+    text{fill:#f2f2f4}
+    .s{font-size:12px;fill:#a8a9b2}
+    .t{fill:#30446b;stroke:#5b7db1}
+    .l{fill:#3a3a3d;stroke:#6b6b70;stroke-dasharray:5 4}
+  </style>
+  <rect width="760" height="330" rx="14" fill="#1c1c1e"/>
+  <text x="20" y="28" font-weight="600">Même endpoint, deux pages différentes</text>
+
+  <text class="s" x="20" y="54">Application mobile, Gameweek en cours</text>
+  <rect class="t" x="20" y="64" width="330" height="44" rx="8"/><text x="32" y="91">Results</text>
+  <rect class="t" x="20" y="116" width="330" height="44" rx="8"/><text x="32" y="143">Games</text>
+  <rect class="t" x="20" y="168" width="330" height="44" rx="8"/><text x="32" y="195">Manager watchlists</text>
+  <rect class="l" x="20" y="220" width="330" height="44" rx="8"/><text x="32" y="247">Impact players  🔒 free plan</text>
+
+  <text class="s" x="410" y="54">Site web, Gameweek terminée</text>
+  <rect class="t" x="410" y="64" width="330" height="44" rx="8"/><text x="422" y="91">Results</text>
+  <rect class="t" x="410" y="116" width="330" height="44" rx="8"/><text x="422" y="143">Rewards</text>
+  <rect class="t" x="410" y="168" width="330" height="44" rx="8"/><text x="422" y="195">Games</text>
+  <text class="s" x="20" y="300">C'est la réponse de l'API qui dit quelles tuiles afficher, dans quel ordre, et lesquelles sont verrouillées.</text>
+</svg>

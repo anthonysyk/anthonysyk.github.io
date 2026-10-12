@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 240" font-family="system-ui, sans-serif" font-size="14">
+  <style>
+    text{fill:#f2f2f4}
+    .s{font-size:12px;fill:#a8a9b2}
+  </style>
+  <rect width="760" height="240" rx="14" fill="#1c1c1e"/>
+  <text x="20" y="28" font-weight="600">Les groupes sont emboîtés : monter le seuil n'éjecte personne</text>
+  <rect x="20" y="50" width="720" height="40" rx="6" fill="#26324a" stroke="#5b7db1"/><text x="30" y="75">seuil 100 %</text>
+  <rect x="20" y="105" width="360" height="40" rx="6" fill="#30446b" stroke="#5b7db1"/><text x="30" y="130">seuil 50 %</text>
+  <rect x="20" y="160" width="72" height="40" rx="6" fill="#4468a3" stroke="#7ea6dd"/><text x="30" y="185">10 %</text>
+  <text class="s" x="110" y="185">bucket = sha1(id) % 100 ; dans le rollout si bucket &lt; seuil</text>
+  <text class="s" x="20" y="225">bucket 0</text><text class="s" x="700" y="225">bucket 99</text>
+</svg>
