@@ -84,7 +84,7 @@ const expertise = [
         </dl>
       </div>
 
-      <div class="relative pb-16 sm:pb-20 lg:pl-6">
+      <div class="relative lg:pl-6">
         <div class="glow inset-10 -z-10 bg-lavender/35" aria-hidden="true"></div>
         <a
           href={`/portfolio/${featured.id}/`}
@@ -104,16 +104,9 @@ const expertise = [
             )
           }
         </a>
-        <img
-          src="/general/avatar.webp"
-          alt={`Portrait de ${SITE.author}`}
-          width="815"
-          height="815"
-          class="absolute bottom-0 -left-2 aspect-square w-32 rounded-[26px] border-4 border-bg object-cover shadow-2xl sm:w-44 lg:-left-6"
-        />
         <a
           href={`/posts/${latest.id}/`}
-          class="panel absolute right-4 bottom-2 hidden w-60 p-4 backdrop-blur transition hover:-translate-y-0.5 sm:block"
+          class="panel absolute -bottom-10 -left-6 hidden w-64 p-4 backdrop-blur transition hover:-translate-y-0.5 sm:block"
         >
           <span class="eyebrow text-[10px]">Dernier article</span>
           <span class="mt-1.5 block text-sm leading-snug text-fg">{latest.data.title}</span>
