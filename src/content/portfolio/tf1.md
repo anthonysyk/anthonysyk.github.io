@@ -23,4 +23,6 @@ TF1+ est la plateforme de streaming du Groupe TF1, disponible sur le web, le mob
 
 ## Produit
 
-![TF1+](/projects/tf1/portfolio-tf1.webp)
+<img src="/projects/tf1/tf1-profils.webp" alt="TF1+ : choix du profil" width="1600" height="812" />
+
+<img src="/projects/tf1/portfolio-tf1.webp" alt="TF1+ : page d'accueil" width="1100" height="3715" loading="lazy" decoding="async" />
