@@ -1,5 +1,5 @@
 ---
-title: Figaro Classifieds - Data Warehouse Job Offers
+title: Figaro Classifieds · Data Warehouse Job Offers
 date: 2022-11-22
 summary: Ingestion des offres d'emplois de plus de 100 sources différentes. Les
   offres sont ensuite mises au format générique, puis nettoyées, enrichies et

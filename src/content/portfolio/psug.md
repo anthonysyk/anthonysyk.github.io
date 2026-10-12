@@ -1,5 +1,5 @@
 ---
-title: Talk Paris Scala - GraphQL
+title: Talk Paris Scala · GraphQL
 date: 2017-10-01
 summary: Talk au Paris Scala User Group (PSUG) sur l'implémentation de GraphQL
   en Scala avec Sangria.

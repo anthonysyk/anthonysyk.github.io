@@ -1,5 +1,5 @@
 ---
-title: Solocal - Datalake Finance
+title: Solocal · Datalake Finance
 date: 2018-10-01
 summary: Solocal est une entreprise leader en publicité et marketing numérique
   pour les entreprises locales, également spécialisée en recherche et

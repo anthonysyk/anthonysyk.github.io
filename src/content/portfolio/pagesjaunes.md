@@ -1,5 +1,5 @@
 ---
-title: Pages Jaunes - Data Engineer
+title: Pages Jaunes · Data Engineer
 date: 2016-11-22
 summary: PagesJaunes est un service de Solocal, permettant aux entreprises
   d'être référencées, plus visibles sur internet et d'attirer de nouveaux

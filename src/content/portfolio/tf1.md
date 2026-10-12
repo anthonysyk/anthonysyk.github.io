@@ -1,5 +1,5 @@
 ---
-title: TF1+ - Plateforme de streaming
+title: TF1+ · Plateforme de streaming
 date: 2025-09-01
 summary: Développeur Backend Senior et référent technique sur TF1+, la
   plateforme de streaming du Groupe TF1.

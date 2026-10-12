@@ -21,7 +21,7 @@ const { project } = Astro.props;
         />
       ) : (
         <div class="relative grid size-full place-items-center bg-[radial-gradient(ellipse_at_30%_20%,rgba(142,155,245,0.25),transparent_60%),radial-gradient(ellipse_at_80%_90%,rgba(241,192,134,0.2),transparent_55%)]">
-          <span class="display grad text-5xl">{project.data.title.split(' - ')[0]}</span>
+          <span class="display grad text-5xl">{project.data.title.split(' · ')[0]}</span>
         </div>
       )
     }

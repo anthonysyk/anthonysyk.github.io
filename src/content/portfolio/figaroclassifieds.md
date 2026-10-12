@@ -1,5 +1,5 @@
 ---
-title: Figaro Classifieds - Transverse API
+title: Figaro Classifieds · Transverse API
 date: 2019-11-22
 summary: "Développement d'API transverses pour tous les produits du groupe :
   Figaro Emploi, Cadremploi, Choose Your Boss, Figaro Insiders, Keljob, CV Aden,
